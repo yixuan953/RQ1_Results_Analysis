@@ -18,6 +18,6 @@ conda activate myenv
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S0/1_Export2nc.py
 
 # 2 - Plot the TSUM1, TSUM2, Sowing date, and harvested area
-python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S0/2_Plot_TSM_SD_HA.PY
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S0/2_Plot_TSM_SD_HA.py
 
 conda deactivate
