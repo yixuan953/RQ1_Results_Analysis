@@ -1,0 +1,21 @@
+Indus (Lat, Lon):
+- mainrice: 32.25, 75.75
+- maize: 31.75, 74.25
+- wheat: 32.75, 71.25
+
+LaPlata (Lat, Lon):
+- mainrice: -26.25, -48.75
+- maize: -23.75, -48.25
+- soybean: -22.75, -47.75
+- wheat: -26.25, -52.25
+
+Rhine (Lat, Lon):
+- maize: 52.25,  4.75
+- wheat: 48.75,  8.25
+
+Yangtze (Lat, Lon):
+- mainrice: 26.75, 114.25
+- secondrice: 27.25, 117.25
+- maize: 31.25, 117.75
+- soybean: 33.75, 109.75
+- wheat: 29.75, 114.75

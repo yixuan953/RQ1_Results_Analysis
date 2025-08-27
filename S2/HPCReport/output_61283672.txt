@@ -1,0 +1,14 @@
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/Indus_mainrice_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/Indus_maize_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/Indus_wheat_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/LaPlata_mainrice_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/LaPlata_maize_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/LaPlata_soybean_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/LaPlata_wheat_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/Rhine_maize_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/Rhine_wheat_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/Yangtze_mainrice_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/Yangtze_secondrice_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/Yangtze_maize_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/Yangtze_soybean_Pdaily_1981-1990.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2/Yangtze_wheat_Pdaily_1981-1990.png

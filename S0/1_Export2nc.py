@@ -4,8 +4,8 @@ import numpy as np
 import os
 
 # study areas and crop types
-studyareas = ["Indus", "Rhine", "LaPlata", "Yangtze"]
-croptypes = ["Mainrice", "Secondrice", "Maize", "Soybean", "Wheat"]
+studyareas = ["Indus"] # ["Indus", "Rhine", "LaPlata", "Yangtze"]
+croptypes = ["Mainrice"]# ["Mainrice", "Secondrice", "Maize", "Soybean", "Wheat"]
 
 # base paths
 csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/S0"
