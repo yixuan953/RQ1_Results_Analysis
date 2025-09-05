@@ -3,12 +3,12 @@ import pandas as pd
 import xarray as xr
 import matplotlib.pyplot as plt
 
-csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/S2"
+csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_Decomp_off"
 mask_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2"
+out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Test_Decomp_off"
 
-studyareas = ["LaPlata", "Yangtze", "Indus", "Rhine"]
-crops = ["mainrice", "secondrice", "wheat", "soybean", "maize"]
+studyareas = ["Rhine"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
+crops = ["maize"] # ["mainrice", "secondrice", "wheat", "soybean", "maize"]
 
 for basin in studyareas:
     for crop in crops:

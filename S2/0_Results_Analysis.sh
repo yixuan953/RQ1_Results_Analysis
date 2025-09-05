@@ -14,7 +14,7 @@ source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
 
 conda activate myenv
 
-# ================== Annual output =====================
+# ================== Annual output: N, P fluxes =====================
 # 1 - Plot the annual N and P fluxes maps 
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/1_Nmaps_30y_Avg.py
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/1_Pmaps_30y_Avg.py
@@ -26,8 +26,15 @@ conda activate myenv
 # 3 - Plot the annual basin-average p pools and p inputs for the past 30 years
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/3_Plines_pool_fert.py
 
-# ================== Daily output =====================
+# ================== Daily output: P fluxes =====================
 # 4 - "Crop-water-nutrient interactions" for P fluxes
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/4_Plines_fluxes_5y_daily.py
+
+# ================== Crop yield =====================
+# 5 - Compare the potential yield and water and nutrient-limited yield
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/5_Yp_WNlY_30yAvg.py
+
+
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/P_Check.py
 
 conda deactivate

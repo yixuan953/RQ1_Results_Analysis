@@ -3,8 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Input/output directories
-indir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/S2"
-outdir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2"
+indir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_Decomp_off"
+outdir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Test_Decomp_off"
 os.makedirs(outdir, exist_ok=True)
 
 # Define target points for each basin/crop
@@ -45,7 +45,7 @@ for basin, crops in targets.items():
 
         # Select the grid cell (exact lat/lon match assumed)
         df_sel = df[(df["Lat"] == lat) & (df["Lon"] == lon)]
-        df_sel = df_sel[(df_sel["Year"] >= 1981) & (df_sel["Year"] <= 1990)]
+        df_sel = df_sel[(df_sel["Year"] >= 1989) & (df_sel["Year"] <= 1990)]
 
         if df_sel.empty:
             print(f"⚠️ No data found for {basin} {crop} at ({lat},{lon})")
@@ -55,7 +55,7 @@ for basin, crops in targets.items():
         df_sel["Date"] = pd.to_datetime(df_sel["Year"].astype(str), format="%Y") + pd.to_timedelta(df_sel["Day"] - 1, unit="D")
 
         # Apply condition for P_demand (set to 0 outside dev stage range)
-        df_sel["P_demand_cond"] = df_sel.apply(lambda r: r["P_demand"] if 0.8 <= r["Dev_Stage"] <= 1.3 else 0, axis=1)
+        df_sel["P_demand_cond"] = df_sel.apply(lambda r: r["P_demand"] if 0.0 <= r["Dev_Stage"] <= 1.3 else 0, axis=1)
 
         # === Plot ===
         fig, axes = plt.subplots(3, 1, figsize=(12, 10), sharex=True)
