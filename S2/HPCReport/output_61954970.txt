@@ -1,0 +1,16 @@
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Indus_mainrice_N_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Indus_mainrice_P_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Indus_maize_N_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Indus_maize_P_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/LaPlata_mainrice_N_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/LaPlata_mainrice_P_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/LaPlata_maize_N_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/LaPlata_maize_P_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Rhine_maize_N_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Rhine_maize_P_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Yangtze_mainrice_N_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Yangtze_mainrice_P_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Yangtze_secondrice_N_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Yangtze_secondrice_P_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Yangtze_maize_N_1996-2015.png
+✅ Saved: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WN_limited/Yangtze_maize_P_1996-2015.png

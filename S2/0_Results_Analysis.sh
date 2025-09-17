@@ -20,8 +20,8 @@ conda activate myenv
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/1_Pmaps_30y_Avg.py
 
 # 2 - Plot the basin average N and P fluxes for the past 30 years 
-# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/2_NbarCharts_30y_Avg.py
-# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/2_PbarCharts_30y_Avg.py
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/2_NbarCharts_30y_Avg.py
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/2_PbarCharts_30y_Avg.py
 
 # 3 - Plot the annual basin-average p pools and p inputs for the past 30 years
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/3_Plines_pool_fert.py
@@ -33,7 +33,6 @@ conda activate myenv
 # ================== Crop yield =====================
 # 5 - Compare the potential yield and water and nutrient-limited yield
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/5_Yp_WNlY_30yAvg.py
-
 
 python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/P_Check.py
 

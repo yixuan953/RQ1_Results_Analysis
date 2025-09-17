@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 # Input/output directories
 csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_Decomp_off"
 mask_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Test_Decomp_off"
+out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Balance/S1_WL"
 
 # Groups
 inputs = ["N_decomp", "N_dep", "N_fert"]
@@ -15,7 +15,7 @@ water = ["N_surf", "N_sub", "N_leach"]
 uptake = ["N_uptake"]
 unused = ["N_unused_org_fert"]
 
-studyareas = ["Yangtze"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
+studyareas = ["LaPlata", "Yangtze", "Indus", "Rhine"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
 crops = ["maize"] # ["mainrice", "secondrice", "wheat", "soybean", "maize"]
 
 for basin in studyareas:

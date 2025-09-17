@@ -6,14 +6,14 @@ import matplotlib.pyplot as plt
 # Input/output directories
 csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_Decomp_off"
 mask_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Test_Decomp_off"
+out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Balance"
 
 # P flux variables
 p_inputs = ["P_decomp", "P_dep", "P_fert"]
 p_outputs = ["P_uptake", "P_surf", "P_sub", "P_leach", "P_acc"]
 p_vars = p_inputs + p_outputs 
 
-studyareas = ["Rhine"]  # ["LaPlata", "Yangtze", "Indus", "Rhine"]
+studyareas = ["LaPlata", "Yangtze", "Indus", "Rhine"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
 crops = ["maize"]       # ["mainrice", "secondrice", "wheat", "soybean", "maize"]
 
 for basin in studyareas:

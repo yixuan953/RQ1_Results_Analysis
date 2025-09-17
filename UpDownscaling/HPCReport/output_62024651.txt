@@ -1,0 +1,17 @@
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/LaPlata_wheat_daily.csv does not exist, skipping.
+Saved monthly data: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/LaPlata_maize_monthly.csv
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/LaPlata_rice_daily.csv does not exist, skipping.
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/LaPlata_soybean_daily.csv does not exist, skipping.
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Indus_wheat_daily.csv does not exist, skipping.
+Saved monthly data: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Indus_maize_monthly.csv
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Indus_rice_daily.csv does not exist, skipping.
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Indus_soybean_daily.csv does not exist, skipping.
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Yangtze_wheat_daily.csv does not exist, skipping.
+Saved monthly data: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Yangtze_maize_monthly.csv
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Yangtze_rice_daily.csv does not exist, skipping.
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Yangtze_soybean_daily.csv does not exist, skipping.
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Rhine_wheat_daily.csv does not exist, skipping.
+Saved monthly data: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Rhine_maize_monthly.csv
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Rhine_rice_daily.csv does not exist, skipping.
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Rhine_soybean_daily.csv does not exist, skipping.
+✅ Updated /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited/Indus_maize_monthly.csv

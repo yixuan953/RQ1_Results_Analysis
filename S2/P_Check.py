@@ -4,41 +4,41 @@ import matplotlib.pyplot as plt
 
 # Paths
 input_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_Decomp_off"
-output_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/P_Check"
+output_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Demand/S1_WL"
 os.makedirs(output_dir, exist_ok=True)
 
 # Target points
 targets = {
-    "Indus": {
+     "Indus": {
         "mainrice": (32.25, 75.75),
         "maize": (31.75, 74.25),
-        "wheat": (32.75, 71.25),
-    },
+         # "wheat": (32.75, 71.25),
+     },
     "LaPlata": {
-        "mainrice": (-26.25, -48.75),
-        "maize": (-23.75, -48.25),
-        "soybean": (-22.75, -47.75),
-        "wheat": (-26.25, -52.25),
-    },
+         "mainrice": (-26.25, -48.75),
+         "maize": (-23.75, -48.25),
+    #     "soybean": (-22.75, -47.75),
+         # "wheat": (-26.25, -52.25),
+     },
     "Rhine": {
-        "maize": (52.25, 4.75),
-        "wheat": (48.75, 8.25),
+        "maize": (51.75, 4.75),
+        # "wheat": (48.75, 8.25),
     },
     "Yangtze": {
-        "mainrice": (26.75, 114.25),
-        "secondrice": (27.25, 117.25),
-        "maize": (31.25, 117.75),
-        "soybean": (33.75, 109.75),
-        "wheat": (29.75, 114.75),
+         "mainrice": (26.75, 114.25),
+         "secondrice": (27.25, 117.25),
+         "maize": (31.25, 117.75),
+    #     "soybean": (33.75, 109.75),
+         # "wheat": (29.75, 114.75),
     }
 }
 
-# Variables and titles
-varlist = ["P_demand", "Transpiration", "cPi", "RootDepth"]
-titles = ["P demand (kg/ha)", "Transpiration & SoilMoisture", "cPi", "Root depth (m)"]
-
 # Years of interest
-start_year, end_year = 1989, 1990
+start_year, end_year = 1996, 2015
+
+# Crop-specific Dev_Stage cutoffs
+stage_cutoffs = {"soybean": 1.5}
+default_cutoff = 1.3
 
 for studyarea, crops in targets.items():
     for crop, (lat, lon) in crops.items():
@@ -64,52 +64,76 @@ for studyarea, crops in targets.items():
         point_df["Date"] = pd.to_datetime(point_df["Year"].astype(str), format="%Y") + \
                            pd.to_timedelta(point_df["Day"] - 1, unit="D")
 
-        # Plot
-        fig, axes = plt.subplots(4, 1, figsize=(12, 10), sharex=True)
-
-        # 1. P_demand (only when Dev_Stage between 0.0 and 1.3)
-        # Define crop-specific Dev_Stage cutoffs
-        stage_cutoffs = {
-            "soybean": 1.5
-        }
-        default_cutoff = 1.3
-
-        # Inside your loop, after filtering df_sel
+        # --- Data conditioning ---
         cutoff = stage_cutoffs.get(crop, default_cutoff)
+        point_df["P_demand_cond"] = point_df["P_demand"].where(
+            (point_df["Dev_Stage"] >= 0.0) & (point_df["Dev_Stage"] <= cutoff), 0
+        )
 
-        df["P_demand_cond"] = df["P_demand"].where((df["Dev_Stage"] >= 0.0) & (df["Dev_Stage"] <= cutoff), 0)
+        point_df["N_demand_cond"] = point_df["N_demand"].where(
+            (point_df["Dev_Stage"] >= 0.0) & (point_df["Dev_Stage"] <= cutoff), 0
+        )
 
-        axes[0].plot(point_df.loc["Date"], point_df.loc["P_demand_cond"], label="P_demand", color="tab:blue")
-        axes[0].set_ylabel(titles[0])
-        axes[0].legend(loc="upper right", fontsize=8)
-        axes[0].grid(True, linestyle="--", alpha=0.5)
+        point_df["RootDepth_cond"] = point_df["RootDepth"].where(
+            (point_df["Transpiration"] > 0.0), 0
+        )
 
-        # 2. Transpiration + SoilMoisture
-        axes[1].plot(point_df["Date"], point_df["Transpiration"], label="Transpiration", color="tab:green")
-        axes[1].plot(point_df["Date"], point_df["SoilMoisture"], label="SoilMoisture", color="tab:orange")
-        axes[1].set_ylabel(titles[1])
-        axes[1].legend(loc="upper right", fontsize=8)
-        axes[1].grid(True, linestyle="--", alpha=0.5)
+        point_df["Soil_Moisture_cond"] = point_df["SoilMoisture"].where(
+            (point_df["SoilMoisture"] > 0.104), 0.104
+        )
 
-        # 3. cPi
-        axes[2].plot(point_df["Date"], point_df["cPi"], label="cPi", color="tab:red")
-        axes[2].set_ylabel(titles[2])
-        axes[2].legend(loc="upper right", fontsize=8)
-        axes[2].grid(True, linestyle="--", alpha=0.5)
+        point_df["P_supply2"] = point_df["P_avail"]                            
+        point_df["N_supply"] = point_df["N_avail"]  
 
-        # 4. RootDepth
-        axes[3].plot(point_df["Date"], point_df["RootDepth"], label="RootDepth", color="tab:purple")
-        axes[3].set_ylabel(titles[3])
-        axes[3].legend(loc="upper right", fontsize=8)
-        axes[3].grid(True, linestyle="--", alpha=0.5)
+        # --- Figure 1: N Demand vs Supply (single plot) ---
+        fig1, ax1 = plt.subplots(figsize=(12, 6))
 
-        axes[-1].set_xlabel("Date")
-        fig.suptitle(f"{studyarea} - {crop} ({lat}, {lon}) | {start_year}-{end_year}", fontsize=14)
+        y_max = max(
+            point_df["N_demand_cond"].max(),
+            point_df["N_avail"].max()
+        )
 
-        # Save
-        outpath = os.path.join(output_dir, f"{studyarea}_{crop}_P_demand_supply_{start_year}-{end_year}.png")
-        plt.tight_layout(rect=[0, 0, 1, 0.96])
-        plt.savefig(outpath, dpi=300)
-        plt.close()
+        ax1.plot(point_df["Date"], point_df["N_demand_cond"], color="tab:blue", label="N_demand")
+        ax1.plot(point_df["Date"], point_df["N_supply"], color="tab:purple", label="N_availability = Remaining fertilization + decomposition + deposition")
 
-        print(f"✅ Saved: {outpath}")
+        ax1.set_ylabel("Daily N demand and availability [kg/ha]")
+        ax1.set_xlabel("Date")
+        ax1.set_ylim(0, y_max * 1.1)
+        ax1.legend(fontsize=8)
+        ax1.grid(True, linestyle="--", alpha=0.5)
+
+        fig1.suptitle(f"{studyarea} - {crop} P Demand vs Supply ({lat}, {lon}) | {start_year}-{end_year}", fontsize=14)
+        fig1.tight_layout(rect=[0, 0, 1, 0.96])
+
+        outpath1 = os.path.join(output_dir, f"{studyarea}_{crop}_N_{start_year}-{end_year}.png")
+        fig1.savefig(outpath1, dpi=300)
+        plt.close(fig1)
+
+
+
+        # --- Figure 2: P Demand vs Supply (single plot) ---
+        fig2, ax2 = plt.subplots(figsize=(12, 6))
+
+        y_max = max(
+            point_df["P_demand_cond"].max(),
+            point_df["P_supply2"].max()
+        )
+
+        ax2.plot(point_df["Date"], point_df["P_demand_cond"], color="tab:blue", label="P_demand")
+        ax2.plot(point_df["Date"], point_df["P_supply2"], color="tab:purple", label="P_availability = cPi * Soil moisture * Maximum root depth ")
+
+        ax2.set_ylabel("Daily P demand and availability [kg/ha]")
+        ax2.set_xlabel("Date")
+        ax2.set_ylim(0, y_max * 1.1)
+        ax2.legend(fontsize=8)
+        ax2.grid(True, linestyle="--", alpha=0.5)
+
+        fig2.suptitle(f"{studyarea} - {crop} P Demand vs availabiltiy ({lat}, {lon}) | {start_year}-{end_year}", fontsize=14)
+        fig2.tight_layout(rect=[0, 0, 1, 0.96])
+
+        outpath2 = os.path.join(output_dir, f"{studyarea}_{crop}_P_{start_year}-{end_year}.png")
+        fig2.savefig(outpath2, dpi=300)
+        plt.close(fig2)
+
+        print(f"✅ Saved: {outpath1}")
+        print(f"✅ Saved: {outpath2}")
