@@ -14,4 +14,4 @@ Saved monthly data: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Yp/Yang
 Saved monthly data: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Yp/Rhine_maize_monthly.csv
 /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Yp/Rhine_rice_daily.csv does not exist, skipping.
 /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Yp/Rhine_soybean_daily.csv does not exist, skipping.
-✅ Updated /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Yp/Indus_maize_monthly.csv
+✅ Updated /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Yp/Rhine_maize_monthly.csv

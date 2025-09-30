@@ -63,5 +63,5 @@ def downscale_basin_crop(basin, crop,
 
 
 # Example usage
-downscale_basin_crop("Indus", "maize")
+downscale_basin_crop("Rhine", "maize")
 

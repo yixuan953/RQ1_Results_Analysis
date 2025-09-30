@@ -5,10 +5,10 @@ import xarray as xr
 import matplotlib.pyplot as plt
 
 # Input/output directories
-csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/S2"
+csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Water-Nutrient-Limited"
 shp_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_shp_StudyArea"
 mask_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/S2"
+out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/RQ1_Ideas/Figure3"
 
 # Variables to plot (P fluxes)
 p_vars = [
@@ -17,8 +17,8 @@ p_vars = [
 ]
 
 # Study areas and crops
-studyareas = ["LaPlata", "Yangtze", "Indus", "Rhine"]
-crops = ["mainrice", "secondrice", "wheat", "soybean", "maize"]
+studyareas = ["LaPlata", "Yangtze", "Indus", "Rhine"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
+crops = ["maize"] #["mainrice", "secondrice", "wheat", "soybean", "maize"]
 
 for basin in studyareas:
     for crop in crops:

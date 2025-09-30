@@ -19,8 +19,8 @@ for basin in basins:
         df['Month'] = df['Date'].dt.month
 
         # Deficits
-        df['N_deficit'] = np.maximum(df['N_uptake'] - df['N_avail'], 0)
-        df['P_deficit'] = np.maximum(df['P_uptake'] - df['P_avail'], 0)
+        df['N_deficit'] = np.where(df['N_uptake'] > 0,np.maximum(df['N_uptake'] - df['N_avail'], 0),0)
+        df['P_deficit'] = np.where(df['P_uptake'] > 0,np.maximum(df['P_uptake'] - df['P_avail'], 0),0)
         df['Days_Fertilization'] = ((df['Fertilization'] == 11) | (df['Fertilization'] == 12)).astype(int)
 
         # Crop-specific dev stage mask

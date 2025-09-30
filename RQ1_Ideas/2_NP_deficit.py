@@ -36,7 +36,7 @@ def read_monthly_csv(path):
 
 
 def make_monthly_maps(basin, crop, ha_da, vals_df, varname, unit='kg/ha', cmap='GnBu', out_file=None):
-    df = vals_df[(vals_df['Year']>=1996)&(vals_df['Year']<=2015)].copy()
+    df = vals_df[(vals_df['Year']>=1986)&(vals_df['Year']<=2015)].copy()
     
     # Determine valid months based on demand
     valid_months = []
@@ -286,10 +286,10 @@ for basin in basins:
                 #         basin, crop, yp_df, wn_df, ha_da=ha_da, varname='P_uptake', valid_months=valid_P_months,
                 #         out_file=out_root/f"{basin}_{crop}_mon_P_uptake_Yp_S2.png"
                 #     )
-                if not yp_df.empty or not wn_df.empty:
-                    make_monthly_lines_with_percentiles(
-                        basin, crop, yp_df, wn_df, ha_da, varname='N_uptake', valid_months=valid_N_months, out_file=out_root/f"{basin}_{crop}_mon_N_uptake_line_Yp_S2.png")
+                # if not yp_df.empty or not wn_df.empty:
+                #     make_monthly_lines_with_percentiles(
+                #         basin, crop, yp_df, wn_df, ha_da, varname='N_uptake', valid_months=valid_N_months, out_file=out_root/f"{basin}_{crop}_mon_N_uptake_line_Yp_S2.png")
 
-                    make_monthly_lines_with_percentiles(
-                        basin, crop, yp_df, wn_df, ha_da, varname='P_uptake', valid_months=valid_N_months, out_file=out_root/f"{basin}_{crop}_mon_P_uptake_line_Yp_S2.png")
+                #     make_monthly_lines_with_percentiles(
+                #         basin, crop, yp_df, wn_df, ha_da, varname='P_uptake', valid_months=valid_N_months, out_file=out_root/f"{basin}_{crop}_mon_P_uptake_line_Yp_S2.png")
 print('All done.')

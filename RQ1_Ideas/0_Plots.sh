@@ -26,4 +26,6 @@ conda activate myenv
 # 4 - Split violin plots of the P_uptake of the Yp output (left half) and the Water-Nutrient-Limited yield (right half) for each month (year 1986 - 2015, basin)
 python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/RQ1_Ideas/2_NP_deficit.py
 
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/RQ1_Ideas/Test.py
+
 conda deactivate
