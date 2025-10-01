@@ -7,7 +7,7 @@ from pathlib import Path
 basins = ["Indus", "Yangtze", "LaPlata", "Rhine"]
 crops = ["winterwheat", "maize", "mainrice", "soybean", "secondrice"]
 years = range(1986, 2016)
-threshold = 2500  # HA threshold for masking
+threshold = 250  # HA threshold for masking
 
 # Base paths
 base_mask = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
@@ -76,6 +76,7 @@ for basin in basins:
             
             Ya_rain = load_avg(paths["Ya_rain"])
             Ya_rain["Storage_rain"] = Ya_rain["Storage"]; Ya_rain = Ya_rain.drop(columns=["Storage"])
+        
         except Exception as e:
             print(f"  ⚠️ Failed to load CSVs for {basin}-{crop}: {e}")
             continue
@@ -91,21 +92,29 @@ for basin in basins:
         merged = merged.groupby(["Lat","Lon"]).mean().reset_index()
 
         # Init arrays
-        mask_full   = np.full((len(lats), len(lons)), np.nan)
-        mask_lim    = np.full_like(mask_full, np.nan)
-        mask_rain   = np.full_like(mask_full, np.nan)
-        mask_yplim  = np.full_like(mask_full, np.nan)
-        mask_yprain = np.full_like(mask_full, np.nan)
+        mask_full            = np.full((len(lats), len(lons)), np.nan)
+        mask_lim             = np.full_like(mask_full, np.nan)
+        mask_rain_Yp         = np.full_like(mask_full, np.nan)
+        mask_rain_Yp_rainfed = np.full_like(mask_full, np.nan)
+        mask_yplim           = np.full_like(mask_full, np.nan)
+        mask_yprain          = np.full_like(mask_full, np.nan)
 
-        # Apply rules
         for _, row in merged.iterrows():
             lat, lon = float(row["Lat"]), float(row["Lon"])
             if lat in lats and lon in lons:
                 i = np.where(lats == lat)[0][0]
                 j = np.where(lons == lon)[0][0]
 
-                if HA.sel(lat=lat, lon=lon).item() <= threshold:
-                    continue  # leave as NaN
+                ha_val = HA.sel(lat=lat, lon=lon).item()
+                if np.isnan(ha_val) or ha_val <= threshold:
+                    # explicitly assign NaN (though arrays are already initialized with NaN)
+                    mask_full[i,j] = np.nan
+                    mask_lim[i,j] = np.nan
+                    mask_rain_Yp[i,j] = np.nan
+                    mask_rain_Yp_rainfed[i,j] = np.nan
+                    mask_yplim[i,j] = np.nan
+                    mask_yprain[i,j] = np.nan
+                    continue
 
                 # Extract scalar values safely
                 def scalar(val):
@@ -123,7 +132,8 @@ for basin in basins:
                 # Compare actual yields
                 mask_full[i,j] = 1 if Ya_full_val > 0.8 * Yp_val else 0
                 mask_lim[i,j]  = 1 if Ya_lim_val > 0.8 * Yp_val else 0
-                mask_rain[i,j] = 1 if Ya_rain_val > 0.8 * Yp_rain_val else 0
+                mask_rain_Yp[i,j] = 1 if Ya_rain_val > 0.8 * Yp_val else 0
+                mask_rain_Yp_rainfed[i,j] = 1 if Ya_rain_val > 0.8 * Yp_rain_val else 0
 
                 # Compare potential yields
                 mask_yplim[i,j]  = 1 if Yp_lim_val > 0.8 * Yp_val else 0
@@ -134,11 +144,12 @@ for basin in basins:
             {
                 "Full_irrigation_actual_fert": (("lat", "lon"), mask_full),
                 "Limited_irrigation_actual_fert": (("lat", "lon"), mask_lim),
-                "Rainfed_actual_fert": (("lat", "lon"), mask_rain),
+                "Rainfed_actual_fert_CompYp": (("lat", "lon"), mask_rain_Yp),
+                "Rainfed_actual_fert_CompYpRainfed": (("lat", "lon"), mask_rain_Yp_rainfed),
                 "Limited_irrigation_suff_fert": (("lat", "lon"), mask_yplim),
                 "Rainfed_suff_fert": (("lat", "lon"), mask_yprain),
             },
             coords={"lat": lats, "lon": lons}
         )
         out_ds.to_netcdf(out_path)
-        print(f"  ✅ Saved {out_path}")
+        print(f" ✅ Saved {out_path}")
