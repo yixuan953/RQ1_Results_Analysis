@@ -2,9 +2,7 @@ import pandas as pd
 import os
 import numpy as np
 
-def downscale_basin_crop(basin, crop,
-                         annual_dir="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Yp",
-                         monthly_dir="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Yp"):
+def downscale_basin_crop(basin, crop, annual_dir, monthly_dir):
 
     # File paths
     annual_file = os.path.join(annual_dir, f"{basin}_{crop}_annual.csv")
@@ -61,7 +59,17 @@ def downscale_basin_crop(basin, crop,
     monthly_df.to_csv(monthly_file, index=False)
     print(f"✅ Updated {monthly_file}")
 
-
 # Example usage
-downscale_basin_crop("Rhine", "maize")
+basins = ["LaPlata", "Indus", "Yangtze", "Rhine"]
+crops = ["winterwheat", "maize", "mainrice", "secondrice", "soybean"]
 
+annual_dir="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Ya-Limited-Irrigation"
+
+for basin in basins:
+    for crop in crops:
+        annual_fp = os.path.join(annual_dir, f"{basin}_{crop}_annual.csv")
+        if not os.path.exists(annual_fp):
+            print(f"{annual_fp} does not exist, skipping.")
+            continue
+        
+        downscale_basin_crop(basin, crop, annual_dir, annual_dir)

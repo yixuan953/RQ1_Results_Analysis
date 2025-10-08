@@ -15,7 +15,7 @@ source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
 conda activate myenv
 
 # 1. Aggregate daily results
-python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/UpDownscaling/1_Aggregate_Daily2Mon.py
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/UpDownscaling/1_Aggregate_Daily2Mon.py
 
 # 2. Redistribute annual results to monthly
 python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/UpDownscaling/2_Downscale_Annaul2Mon.py

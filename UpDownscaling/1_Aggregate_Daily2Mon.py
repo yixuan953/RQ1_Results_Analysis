@@ -3,9 +3,9 @@ import numpy as np
 from pathlib import Path
 
 basins = ["LaPlata", "Indus", "Yangtze", "Rhine"]
-crops = ["wheat", "maize", "rice", "soybean"]
+crops = ["winterwheat", "maize", "mainrice", "secondrice", "soybean"]
 
-daily_dir_tpl = Path("/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Yp/{basin}_{crop}_daily.csv")
+daily_dir_tpl = Path("/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Yp-Rainfed/{basin}_{crop}_daily.csv")
 
 for basin in basins:
     for crop in crops:
@@ -29,9 +29,6 @@ for basin in basins:
         else:
             dev_mask = (df['Dev_Stage'] > 0) & (df['Dev_Stage'] < 1.3)
 
-        # Split df for N/P demand aggregation
-        df_demand = df[dev_mask].copy()
-
         # Aggregate sums
         sum_cols_all = ['SurfaceRunoff','SubsurfaceRunoff','Percolation',
                         'Days_Fertilization','N_uptake','P_uptake',
@@ -41,12 +38,6 @@ for basin in basins:
         # Aggregate general sums
         monthly_all = df.groupby(['Lat','Lon','Year','Month'])[sum_cols_all].sum().reset_index()
 
-        # Aggregate N_demand and P_demand only for dev stage
-        monthly_demand = df_demand.groupby(['Lat','Lon','Year','Month'])[['N_demand','P_demand']].sum().reset_index()
-
-        # Merge the two
-        monthly = pd.merge(monthly_all, monthly_demand, on=['Lat','Lon','Year','Month'], how='left')
-
         monthly_fp = daily_fp.parent / f"{basin}_{crop}_monthly.csv"
-        monthly.to_csv(monthly_fp, index=False)
+        monthly_all.to_csv(monthly_fp, index=False)
         print(f"Saved monthly data: {monthly_fp}")
