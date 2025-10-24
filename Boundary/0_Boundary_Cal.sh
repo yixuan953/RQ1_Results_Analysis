@@ -56,6 +56,15 @@ CutFlow(){
 }
 # CutFlow
 
+# 3. Get the cropland area
+GetCroplandArea(){
+    source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
+    conda activate myenv
+    python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/2_1_Get_total_cropland_Area.py
+    conda deactivate  
+}
+# GetCroplandArea
+
 # 3. Get the critical N, P losses
 GetCriticalLoss(){
     source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
@@ -63,4 +72,4 @@ GetCriticalLoss(){
     python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/2_Get_Critical_Loss.py
     conda deactivate  
 }
-GetCriticalLoss
+# GetCriticalLoss

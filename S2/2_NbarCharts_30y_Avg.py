@@ -4,19 +4,18 @@ import xarray as xr
 import matplotlib.pyplot as plt
 
 # Input/output directories
-csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_Decomp_off"
+csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output_Unsus_Irrigation"
 mask_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Balance/S1_WL"
+out_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output_Unsus_Irrigation"
 
 # Groups
 inputs = ["N_decomp", "N_dep", "N_fert"]
 gaseous = ["NH3", "N2O", "NOx", "N2"]
 water = ["N_surf", "N_sub", "N_leach"]
 uptake = ["N_uptake"]
-unused = ["N_unused_org_fert"]
 
-studyareas = ["LaPlata", "Yangtze", "Indus", "Rhine"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
-crops = ["maize"] # ["mainrice", "secondrice", "wheat", "soybean", "maize"]
+studyareas = ["Yangtze"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
+crops = ["mainrice"] # ["mainrice", "secondrice", "wheat", "soybean", "maize"]
 
 for basin in studyareas:
     for crop in crops:
@@ -33,7 +32,7 @@ for basin in studyareas:
         df = pd.read_csv(csv_file, delimiter=",", skipinitialspace=True)
 
         # Ensure numeric
-        for col in inputs + gaseous + water + uptake + unused:
+        for col in inputs + gaseous + water + uptake:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col], errors="coerce")
 
@@ -48,12 +47,12 @@ for basin in studyareas:
 
         # Filter years
         df = df[(df["Year"] >= 1986) & (df["Year"] <= 2015)]
-        df = df.dropna(subset=inputs + gaseous + water + uptake + unused)
+        df = df.dropna(subset=inputs + gaseous + water + uptake)
         if df.empty:
             continue
 
         # Average across years per pixel
-        avg_df = df.groupby(["Lat", "Lon"])[inputs + gaseous + water + uptake + unused].mean().reset_index()
+        avg_df = df.groupby(["Lat", "Lon"])[inputs + gaseous + water + uptake].mean().reset_index()
 
         # Load mask
         mask = xr.open_dataset(mask_file)
@@ -64,8 +63,8 @@ for basin in studyareas:
 
         # Merge HA with avg_df
         merged = avg_df.merge(
-            ha_valid, left_on=["Lat", "Lon"], right_on=["lat", "lon"], how="inner"
-        )
+            ha_valid, left_on=["Lat", "Lon"], right_on=["lat", "lon"], how="inner")
+            
         if merged.empty:
             continue
 

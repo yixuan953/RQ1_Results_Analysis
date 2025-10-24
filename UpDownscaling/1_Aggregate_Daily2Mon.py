@@ -5,7 +5,7 @@ from pathlib import Path
 basins = ["LaPlata", "Indus", "Yangtze", "Rhine"]
 crops = ["winterwheat", "maize", "mainrice", "secondrice", "soybean"]
 
-daily_dir_tpl = Path("/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Yp-Rainfed/{basin}_{crop}_daily.csv")
+daily_dir_tpl = Path("/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output_Rainfed/{basin}_{crop}_daily.csv")
 
 for basin in basins:
     for crop in crops:

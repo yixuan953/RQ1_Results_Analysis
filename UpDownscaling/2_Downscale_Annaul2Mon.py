@@ -63,7 +63,7 @@ def downscale_basin_crop(basin, crop, annual_dir, monthly_dir):
 basins = ["LaPlata", "Indus", "Yangtze", "Rhine"]
 crops = ["winterwheat", "maize", "mainrice", "secondrice", "soybean"]
 
-annual_dir="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Ya-Limited-Irrigation"
+annual_dir="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output_Rainfed"
 
 for basin in basins:
     for crop in crops:

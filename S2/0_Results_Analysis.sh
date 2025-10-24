@@ -16,11 +16,11 @@ conda activate myenv
 
 # ================== Annual output: N, P fluxes =====================
 # 1 - Plot the annual N and P fluxes maps 
-python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/1_Nmaps_30y_Avg.py
-python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/1_Pmaps_30y_Avg.py
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/1_Nmaps_30y_Avg.py
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/1_Pmaps_30y_Avg.py
 
 # 2 - Plot the basin average N and P fluxes for the past 30 years 
-# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/2_NbarCharts_30y_Avg.py
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/2_NbarCharts_30y_Avg.py
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S2/2_PbarCharts_30y_Avg.py
 
 # 3 - Plot the annual basin-average p pools and p inputs for the past 30 years

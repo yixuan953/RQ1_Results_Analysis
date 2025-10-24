@@ -24,6 +24,9 @@ conda activate myenv
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/3_Get_Focus_Mask.py
 
 # 4. Plot focus maps for 4 basins
-python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/4_WN_management.py
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/4_WN_management.py
+
+# 5. Compare the N, P losses 
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/5_Compare_NP_loss.py
 
 conda deactivate
