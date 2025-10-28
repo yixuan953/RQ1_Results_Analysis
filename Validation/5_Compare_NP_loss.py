@@ -36,6 +36,7 @@ for basin in basins:
         # 3) Validation variabled
         df["N_app"] = df["N_fert"] + df["N_surf"] + df["N2O"] + df["NOx"] + df["NH3"] + df ["N2"]
         df["N_runoff"] = df["N_surf"] + df["N_sub"]
+        df["total_losses_flow"] = df["N_runoff"] + df["N_leach"]
         df["total_N_loss"] = df["N_runoff"] + df["N_leach"] +  df["N_surf"] + df["N2O"] + df["NOx"] + df["NH3"] + df ["N2"]
         df["total_N_uptake_loss"] = df["total_N_loss"]  + df["N_uptake"]
         df["N_surplus"] = df["N_leach"] + df["N_sub"] + df["N2"]
@@ -46,7 +47,7 @@ for basin in basins:
         df["NOx_perc"] = df["NOx"]/df["N_app"]
 
         # Variables for validation
-        val_variables = ["N_runoff", "total_N_loss", "total_N_uptake_loss", "N_surplus", "N_runoff_perc", "N_leach_perc", "NH3_perc", "N2O_perc","NOx_perc", "P_acc", "NH3","N2O","NOx","N2","N_surf","N_sub","N_leach","N_uptake","P_surf","P_sub","P_leach","P_uptake"]
+        val_variables = ["N_runoff","total_losses_flow", "total_N_loss", "total_N_uptake_loss", "N_surplus", "N_runoff_perc", "N_leach_perc", "NH3_perc", "N2O_perc","NOx_perc", "P_acc", "NH3","N2O","NOx","N2","N_surf","N_sub","N_leach","N_uptake","P_surf","P_sub","P_leach","P_uptake"]
         
         # 3) Mean per pixel over time period
         df_mean = df.groupby(["Lat","Lon"])[val_variables].mean().reset_index()
@@ -58,14 +59,16 @@ for basin in basins:
             print(f"No valid pixels for {basin}-{crop}, skipping.")
             continue
 
-        # 5) Compute percentiles
-        percentiles = {}
+        # 5) Compute percentiles and structure output
+        rows = []
         for v in val_variables:
-            percentiles[f"{v}_10"] = np.percentile(df_valid[v], 10)
-            percentiles[f"{v}_90"] = np.percentile(df_valid[v], 90)
+            p10 = np.percentile(df_valid[v], 10)
+            p90 = np.percentile(df_valid[v], 90)
+            rows.append({"Variable": v, "P10": p10, "P90": p90})
+
+        out_df = pd.DataFrame(rows)
 
         # 6) Save
-        out_df = pd.DataFrame([percentiles])
         os.makedirs(os.path.dirname(out_file), exist_ok=True)
         out_df.to_csv(out_file, index=False)
 
