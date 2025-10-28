@@ -1,13 +1,13 @@
 import xarray as xr
-import os
 
 basins = ["LaPlata", "Indus", "Yangtze", "Rhine"]
 
 # define critical concentrations (mg/L)
-N_crit_conc_runoff = 5.0
+N_crit_conc_runoff = 2.5
 N_crit_conc_leach = 11.3
-P_crit_conc_runoff = 0.16 
-P_crit_conc_leach = 0.16 
+P_crit_conc_runoff = 0.1 
+P_crit_conc_leach = 0.1
+Fr_ret = 0.5 
 
 for basin in basins:
     hydro_dir = f"/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea/{basin}/Hydro"
@@ -21,10 +21,10 @@ for basin in basins:
     runoff   = ds_runoff[list(ds_runoff.data_vars)[0]]
 
     # calculate critical losses (kg/ha)
-    N_leaching = N_crit_conc_leach * baseflow * 0.01
-    N_runoff   = N_crit_conc_runoff * runoff   * 0.01
-    P_leaching = P_crit_conc_runoff * baseflow * 0.01
-    P_runoff   = P_crit_conc_leach * runoff   * 0.01
+    N_leaching = N_crit_conc_leach * baseflow  * 0.01
+    N_runoff   = N_crit_conc_runoff * runoff   * (1/Fr_ret) * 0.01
+    P_leaching = P_crit_conc_runoff * baseflow * (1/Fr_ret) * 0.01
+    P_runoff   = P_crit_conc_leach * runoff   * (1/Fr_ret) * 0.01
 
     # save results
     N_leaching.to_netcdf(f"{hydro_dir}/{basin}_N_critical_leaching_1986-2015.nc")

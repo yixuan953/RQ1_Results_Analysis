@@ -56,7 +56,9 @@ CutFlow(){
 }
 # CutFlow
 
-# 3. Get the cropland area
+
+# ============== Wim's method
+# 3.1 Get the cropland area
 GetCroplandArea(){
     source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
     conda activate myenv
@@ -65,11 +67,40 @@ GetCroplandArea(){
 }
 # GetCroplandArea
 
-# 3. Get the critical N, P losses
+# 3.2 Get the monthly critical N, P losses
 GetCriticalLoss(){
     source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
     conda activate myenv
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/2_2_Cal_global_critical_loss.py
     python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/2_Get_Critical_Loss.py
     conda deactivate  
 }
 # GetCriticalLoss
+
+SumAnnual(){
+
+    BASE_DIR="/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
+    BASINS=("Yangtze" "LaPlata" "Indus" "Rhine")
+    TYPES=("N_critical_leaching" "N_critical_runoff" "P_critical_leaching" "P_critical_runoff")
+
+    for basin in "${BASINS[@]}"; do
+        HYDRO_DIR="${BASE_DIR}/${basin}/Hydro"
+        OUT_DIR="${HYDRO_DIR}"
+
+        for type in "${TYPES[@]}"; do
+            infile="${HYDRO_DIR}/${basin}_${type}_1986-2015.nc"
+            outfile="${OUT_DIR}/${basin}_${type}_annual.nc"
+
+            if [[ -f "$infile" ]]; then
+                echo "Summing monthly to annual for $infile ..."
+                cdo yearsum "$infile" "$outfile"
+            else
+                echo "⚠️  File not found: $infile"
+            fi
+        done
+    done
+
+    echo "✅ All basins processed. Annual files saved in each Hydro/Annual directory."
+
+}
+SumAnnual
