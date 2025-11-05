@@ -27,6 +27,9 @@ conda activate myenv
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/4_WN_management.py
 
 # 5. Compare the N, P losses 
-python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/5_Compare_NP_loss.py
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/5_Compare_NP_loss.py
+
+# 6. Check the irrigation
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/6_Irrigation_Check.py
 
 conda deactivate

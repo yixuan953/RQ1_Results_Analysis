@@ -1,0 +1,20 @@
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/LaPlata_mainrice_sus_irri.png
+Skipping LaPlata-secondrice (file missing)
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/LaPlata_winterwheat_sus_irri.png
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/LaPlata_soybean_sus_irri.png
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/LaPlata_maize_sus_irri.png
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/Indus_mainrice_sus_irri.png
+Skipping Indus-secondrice (file missing)
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/Indus_winterwheat_sus_irri.png
+Skipping Indus-soybean (file missing)
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/Indus_maize_sus_irri.png
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/Yangtze_mainrice_sus_irri.png
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/Yangtze_secondrice_sus_irri.png
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/Yangtze_winterwheat_sus_irri.png
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/Yangtze_soybean_sus_irri.png
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/Yangtze_maize_sus_irri.png
+Skipping Rhine-mainrice (file missing)
+Skipping Rhine-secondrice (file missing)
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/Rhine_winterwheat_sus_irri.png
+Skipping Rhine-soybean (file missing)
+ Saved overlayed summary bar chart: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/1_Validation/CheckIrri/Rhine_maize_sus_irri.png

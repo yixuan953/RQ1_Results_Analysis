@@ -62,7 +62,7 @@ CutFlow(){
 GetCroplandArea(){
     source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
     conda activate myenv
-    python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/2_1_Get_total_cropland_Area.py
+    python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/2_1_Get_total_Harvest_Area.py
     conda deactivate  
 }
 # GetCroplandArea
@@ -103,4 +103,49 @@ SumAnnual(){
     echo "✅ All basins processed. Annual files saved in each Hydro/Annual directory."
 
 }
-SumAnnual
+# SumAnnual
+
+# ========= Method 1: Downscaling the critical N, P load to cropland
+Cal_Critical_Method1(){
+    source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
+    conda activate myenv
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method1_1.py # Get the total critical N, P runoff (from all sectors) [kg]
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method1_2.py # Get the total agricultural N, P runoff [kg]
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method1_3.py # Get the total cropland N, P runoff [kg]
+
+    # Critical N, P losses to main crops
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method1_4.py
+    
+    conda deactivate
+}
+# Cal_Critical_Method1
+
+Cut_Range(){
+    module load cdo
+    module load nco
+    StudyAreas=("Rhine" "Yangtze" "LaPlata" "Indus") #("Rhine" "Yangtze" "LaPlata" "Indus")
+    data_dir="/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
+    output_dir="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1"
+    N_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1/Global_cropland_critical_N_runoff.nc"
+    P_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1/Global_cropland_critical_P_runoff.nc"
+
+    for StudyArea in "${StudyAreas[@]}"; 
+    do
+        crop_mask="${data_dir}/${StudyArea}/range.txt"
+
+        cdo remapnn,$crop_mask $N_runoff ${output_dir}/${StudyArea}_crit_N_runoff.nc
+        cdo remapnn,$crop_mask $P_runoff ${output_dir}/${StudyArea}_crit_P_runoff.nc
+
+    done   
+}
+Cut_Range
+
+
+# ========= Method 2: Using agriculture runoff * critical concentration
+Cal_Critical_Method2(){
+    source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
+    conda activate myenv
+    python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method2.py
+    conda deactivate
+}
+# Cal_Critical_Method2

@@ -1,0 +1,20 @@
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/LaPlata_winterwheat_runoff.nc
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/LaPlata_maize_runoff.nc
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/LaPlata_mainrice_runoff.nc
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output_Rainfed/LaPlata_secondrice_daily.csv does not exist, skipping.
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/LaPlata_soybean_runoff.nc
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/Indus_winterwheat_runoff.nc
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/Indus_maize_runoff.nc
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/Indus_mainrice_runoff.nc
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output_Rainfed/Indus_secondrice_daily.csv does not exist, skipping.
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output_Rainfed/Indus_soybean_daily.csv does not exist, skipping.
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/Yangtze_winterwheat_runoff.nc
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/Yangtze_maize_runoff.nc
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/Yangtze_mainrice_runoff.nc
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/Yangtze_secondrice_runoff.nc
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/Yangtze_soybean_runoff.nc
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/Rhine_winterwheat_runoff.nc
+Saved annual NetCDF: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/WOFOST_Runoff/Rainfed/Rhine_maize_runoff.nc
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output_Rainfed/Rhine_mainrice_daily.csv does not exist, skipping.
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output_Rainfed/Rhine_secondrice_daily.csv does not exist, skipping.
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output_Rainfed/Rhine_soybean_daily.csv does not exist, skipping.
