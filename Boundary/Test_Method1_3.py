@@ -17,27 +17,27 @@ Agri_P_loss = ds_Agri_P_loss["critical_agri_P_load"]
 # Load cropland and grassland N, P input
 Cropland_N_input_nc = "/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/IMAGE/Output-IMAGE_GNM-SSP1_oct2020-Nitrogen_CroplandBudget-v2.nc"
 ds_Crop_N_input_all = xr.open_dataset(Cropland_N_input_nc)
-ds_Crop_N_input = ds_Crop_N_input_all.sel(time = "2005")
+ds_Crop_N_input = ds_Crop_N_input_all.sel(time = "2015")
 Cropland_N_input = (ds_Crop_N_input["Fertilizer"] 
                     + ds_Crop_N_input["AtmosphericDeposition"] 
                     + ds_Crop_N_input ["ManureRecycledFromConfinement"])
 
 Grassland_N_input_nc = "/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/IMAGE/Output-IMAGE_GNM-SSP1_oct2020-Nitrogen_PastureBudget-v2.nc"
 ds_Grass_N_input_all = xr.open_dataset(Grassland_N_input_nc)
-ds_Grass_N_input = ds_Grass_N_input_all.sel(time = "2005")
+ds_Grass_N_input = ds_Grass_N_input_all.sel(time = "2015")
 Grassland_N_input = ( ds_Grass_N_input["Fertilizer"]
                      + ds_Grass_N_input["AtmosphericDeposition"]
                      + ds_Grass_N_input ["Manure"])
 
 Cropland_P_input_nc = "/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/IMAGE/Output-IMAGE_GNM-SSP1_oct2020-Phosphate_CroplandBudget-v2.nc"
 ds_Crop_P_input_all = xr.open_dataset(Cropland_P_input_nc)
-ds_Crop_P_input = ds_Crop_P_input_all.sel(time = "2005")
+ds_Crop_P_input = ds_Crop_P_input_all.sel(time = "2015")
 Cropland_P_input = (ds_Crop_P_input["Fertilizer"] 
                     + ds_Crop_P_input ["ManureRecycledFromConfinement"])
 
 Grassland_P_input_nc = "/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/IMAGE/Output-IMAGE_GNM-SSP1_oct2020-Phosphate_PastureBudget-v2.nc"
 ds_Grass_P_input_all = xr.open_dataset(Grassland_P_input_nc)
-ds_Grass_P_input = ds_Grass_P_input_all.sel(time = "2005")
+ds_Grass_P_input = ds_Grass_P_input_all.sel(time = "2015")
 Grassland_P_input = (ds_Grass_P_input["Fertilizer"]
                      + ds_Grass_P_input ["Manure"])
 

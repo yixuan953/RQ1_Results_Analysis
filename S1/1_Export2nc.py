@@ -5,12 +5,12 @@ import os
 
 # study areas and crop types
 studyareas = ["Indus", "Rhine", "LaPlata", "Yangtze"]
-croptypes = ["winterwheat"] # ["mainrice", "secondrice", "maize", "soybean", "wheat"]
+croptypes = ["winterwheat"] # ["mainrice", "secondrice", "maize", "soybean", "winterwheat"]
 
 # base paths
-csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/S1"
+csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/WOFOST-withoutNPLimit/Output"
 range_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/S1"
+out_dir = "/lustre/nobackup/WUR/ESG/zhou111/WOFOST-withoutNPLimit/Output/RainfedPot_nc"
 
 for studyarea in studyareas:
     # load reference grid
@@ -28,8 +28,8 @@ for studyarea in studyareas:
     lon_index = {v: j for j, v in enumerate(lon)}
 
     for croptype in croptypes:
-        csv_file = f"{csv_dir}/{studyarea}_{croptype}_annual.csv"
-        output_file = f"{out_dir}/{studyarea}_{croptype}_Yp.nc"
+        csv_file = f"{csv_dir}/{studyarea}_wl_noIrri_{croptype}_Annual.csv"
+        output_file = f"{out_dir}/{studyarea}_{croptype}_annual.nc"
 
         if not os.path.exists(csv_file):
             print(f" No CSV for {studyarea} - {croptype}, skipping...")
@@ -58,27 +58,27 @@ for studyarea in studyareas:
             if i is not None and j is not None and t is not None:
                 storage_arr[t, i, j] = row["Storage"]
                 growthday_arr[t, i, j] = row["GrowthDay"]
-                nup_arr[t, i, j] = row["N_Uptake"]
-                pup_arr[t, i, j] = row["P_Uptake"]
+                # nup_arr[t, i, j] = row["N_Uptake"]
+                # pup_arr[t, i, j] = row["P_Uptake"]
 
         # make Dataset
         ds = xr.Dataset(
             {
                 "Yp": (("year", "lat", "lon"), storage_arr),
                 "GrowthDay": (("year", "lat", "lon"), growthday_arr),
-                "N_Uptake": (("year", "lat", "lon"), nup_arr),
-                "P_Uptake": (("year", "lat", "lon"), pup_arr),
+                # "N_Uptake": (("year", "lat", "lon"), nup_arr),
+                # "P_Uptake": (("year", "lat", "lon"), pup_arr),
             },
             coords={"year": years, "lat": lat, "lon": lon}
         )
 
         # attributes
-        ds.attrs["description"] = f"Annual N, P uptakes and yield for {croptype} in {studyarea}"
+        ds.attrs["description"] = f"Annual yield for {croptype} in {studyarea}"
         for var in ds.data_vars:
-            ds[var].attrs["_FillValue"] = -9999.0
+            ds[var].attrs["_FillValue"] = 0.0
 
         # replace NaN with FillValue
-        ds = ds.fillna(-9999.0)
+        ds = ds.fillna(0.0)
 
         # save
         ds.to_netcdf(output_file)

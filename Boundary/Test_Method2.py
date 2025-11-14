@@ -24,7 +24,7 @@ for basin in basins:
         runoff = ds_runoff["Runoff"]
 
         # calculate critical losses (kg/ha)
-        N_runoff   = N_crit_conc_runoff * runoff * (1/Fr_ret) * 0.1
+        N_runoff   = N_crit_conc_runoff * runoff * (1/Fr_ret) * 0.1 # Runoff unit: cm
         P_runoff   = P_crit_conc_runoff * runoff * (1/Fr_ret) * 0.1
 
         # save results

@@ -7,9 +7,10 @@ from affine import Affine
 from rasterio.warp import reproject, Resampling
 
 # Path for the original data
-input_path = '/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/SPAM/spam2005v3r2_global_harv_area/geotiff_global_harv_area'
-output_path = "/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/SPAM/spam2005v3r2_global_harv_area/ncFormat"
-crop_list = ["ACOF", "BANA", "BARL", "BEAN", "CASS", "CHIC", "CNUT", "COCO", "COTT", "COWP", "GROU", "LENT", "MAIZ", "OCER", "OFIB", "OILP", "OOIL", "ORTS", "PIGE", "PLNT", "PMIL", "POTA", "RAPE", "RCOF", "REST", "RICE", "SESA", "SMIL", "SORG", "SUGB", "SUGC", "SUNF", "SWPO", "TEAS", "TEMF", "TOBA", "TROF", "VEGE", "WHEA", "YAMS"]
+input_path = '/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/SPAM/SPAM2010_Harvest_Area'
+output_path = "/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/SPAM/SPAM2010_HA_nc"
+crop_list = ["ACOF", "BANA", "BARL", "BEAN", "CASS", "CHIC", "CNUT", "COCO", "COTT", "COWP", "GROU", "LENT", "MAIZ", "OCER", "OFIB", "OILP", "OOIL", "ORTS", "PIGE", "PLNT", "PMIL", "POTA", "RAPE", "RCOF", "REST", "RICE", "SESA", "SMIL", "SORG", "SOYB", "SUGB", "SUGC", "SUNF", "SWPO", "TEAS", "TEMF", "TOBA", "TROF", "VEGE", "WHEA", "YAMS"]
+# crop_list = ["MAIZ", "RICE", "SOYB", "WHEA"]
 
 # Define our 0.5 degree global grid
 lon_new = np.arange(-179.75, 180, 0.5)
@@ -94,7 +95,9 @@ os.makedirs(output_path, exist_ok=True)
 for crop in crop_list:
     try:
         print(f"Processing crop: {crop}")
-        HA_file = os.path.join(input_path, f"SPAM2005V3r2_global_H_TA_{crop}_A.tif")
+        
+        # Total harvest area
+        HA_file = os.path.join(input_path, f"spam2010V2r0_global_H_{crop}_I.tif") # A: total; # I: irrigated; "R:rainfed"
         
         # Check if files exist
         if not os.path.exists(HA_file):
@@ -118,14 +121,14 @@ for crop in crop_list:
         # Add proper attributes
         ds["Harvest_Area"].attrs = {
             "units": "ha",
-            "long_name": f"Harvested area for {crop}",
+            "long_name": f"Irrigated harvested area for {crop}",
             "_FillValue": np.nan,
             "aggregation_method": "sum"
         }
         
         
         # Save NetCDF with compression
-        nc_file = os.path.join(output_path, f"{crop}_Harvest_Area_05d.nc")
+        nc_file = os.path.join(output_path, f"{crop}_Irrigated_Harvest_Area_05d.nc")
         encoding = {
             "Harvest_Area": {"zlib": True, "complevel": 5},
         }

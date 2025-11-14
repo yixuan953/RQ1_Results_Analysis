@@ -4,9 +4,9 @@ import xarray as xr
 import matplotlib.pyplot as plt
 
 # Input/output directories
-csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_Decomp_off"
+csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output"
 mask_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/0_NP_Balance"
+out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/No_Fert_Test"
 
 # P flux variables
 p_inputs = ["P_decomp", "P_dep", "P_fert"]
@@ -14,7 +14,7 @@ p_outputs = ["P_uptake", "P_surf", "P_sub", "P_leach", "P_acc"]
 p_vars = p_inputs + p_outputs 
 
 studyareas = ["LaPlata", "Yangtze", "Indus", "Rhine"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
-crops = ["maize"]       # ["mainrice", "secondrice", "wheat", "soybean", "maize"]
+crops = ["mainrice", "secondrice", "wheat", "soybean"]# ["mainrice", "secondrice", "wheat", "soybean", "maize"]
 
 for basin in studyareas:
     for crop in crops:
@@ -26,7 +26,7 @@ for basin in studyareas:
             continue
 
         print(f"Processing {basin} - {crop}")
-
+ 
         # Read CSV
         df = pd.read_csv(csv_file, delimiter=",", skipinitialspace=True)
 
@@ -122,4 +122,3 @@ for basin in studyareas:
         out_file = os.path.join(out_dir, f"{basin}_{crop}_PbarCharts_30yAvg.png")
         plt.savefig(out_file, dpi=300, bbox_inches="tight")
         plt.close()
-

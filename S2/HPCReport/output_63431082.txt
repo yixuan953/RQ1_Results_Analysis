@@ -1,0 +1,13 @@
+Processing LaPlata - maize
+
+Area-weighted averages for LaPlata - maize (1986–2015):
+  Inputs:
+    P_decomp: 21.137
+    P_dep: 0.018
+    P_fert: 0.000
+  Uptake, losses & accumulation:
+    P_uptake: 0.259
+    P_surf: 3.463
+    P_sub: 6.364
+    P_leach: 5.618
+    P_acc: 5.448

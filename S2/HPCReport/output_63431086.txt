@@ -1,0 +1,52 @@
+Processing LaPlata - maize
+
+Area-weighted averages for LaPlata - maize (1986–2015):
+  Inputs:
+    P_decomp: 21.137
+    P_dep: 0.018
+    P_fert: 0.000
+  Uptake, losses & accumulation:
+    P_uptake: 0.259
+    P_surf: 3.463
+    P_sub: 6.364
+    P_leach: 5.618
+    P_acc: 5.448
+Processing Yangtze - maize
+
+Area-weighted averages for Yangtze - maize (1986–2015):
+  Inputs:
+    P_decomp: 15.929
+    P_dep: 0.079
+    P_fert: 0.000
+  Uptake, losses & accumulation:
+    P_uptake: 0.290
+    P_surf: 3.832
+    P_sub: 4.226
+    P_leach: 4.191
+    P_acc: 3.472
+Processing Indus - maize
+
+Area-weighted averages for Indus - maize (1986–2015):
+  Inputs:
+    P_decomp: 14.456
+    P_dep: 0.084
+    P_fert: 0.000
+  Uptake, losses & accumulation:
+    P_uptake: 0.240
+    P_surf: 2.183
+    P_sub: 4.286
+    P_leach: 3.219
+    P_acc: 4.613
+Processing Rhine - maize
+
+Area-weighted averages for Rhine - maize (1986–2015):
+  Inputs:
+    P_decomp: 11.929
+    P_dep: 0.040
+    P_fert: 0.000
+  Uptake, losses & accumulation:
+    P_uptake: 0.330
+    P_surf: 0.334
+    P_sub: 5.670
+    P_leach: 5.633
+    P_acc: 0.001

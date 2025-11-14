@@ -1,0 +1,78 @@
+Processing LaPlata - mainrice
+
+Area-weighted averages for LaPlata - mainrice (1986–2015):
+  Inputs:
+    P_decomp: 24.034
+    P_dep: 0.029
+    P_fert: 0.000
+  Uptake, losses & accumulation:
+    P_uptake: 0.337
+    P_surf: 2.692
+    P_sub: 7.748
+    P_leach: 7.379
+    P_acc: 5.904
+Processing LaPlata - soybean
+
+Area-weighted averages for LaPlata - soybean (1986–2015):
+  Inputs:
+    P_decomp: 19.276
+    P_dep: 0.013
+    P_fert: 0.000
+  Uptake, losses & accumulation:
+    P_uptake: 15.712
+    P_surf: 0.721
+    P_sub: 0.956
+    P_leach: 1.042
+    P_acc: 0.855
+Processing Yangtze - mainrice
+
+Area-weighted averages for Yangtze - mainrice (1986–2015):
+  Inputs:
+    P_decomp: 19.535
+    P_dep: 0.087
+    P_fert: 0.000
+  Uptake, losses & accumulation:
+    P_uptake: 0.336
+    P_surf: 0.757
+    P_sub: 7.019
+    P_leach: 6.728
+    P_acc: 4.783
+Processing Yangtze - secondrice
+
+Area-weighted averages for Yangtze - secondrice (1986–2015):
+  Inputs:
+    P_decomp: 20.954
+    P_dep: 0.091
+    P_fert: 0.000
+  Uptake, losses & accumulation:
+    P_uptake: 0.342
+    P_surf: 1.638
+    P_sub: 7.553
+    P_leach: 7.252
+    P_acc: 4.261
+Processing Yangtze - soybean
+
+Area-weighted averages for Yangtze - soybean (1986–2015):
+  Inputs:
+    P_decomp: 15.309
+    P_dep: 0.079
+    P_fert: 0.000
+  Uptake, losses & accumulation:
+    P_uptake: 12.297
+    P_surf: 0.541
+    P_sub: 1.277
+    P_leach: 1.366
+    P_acc: -0.092
+Processing Indus - mainrice
+
+Area-weighted averages for Indus - mainrice (1986–2015):
+  Inputs:
+    P_decomp: 13.011
+    P_dep: 0.071
+    P_fert: 0.000
+  Uptake, losses & accumulation:
+    P_uptake: 0.248
+    P_surf: 1.974
+    P_sub: 3.545
+    P_leach: 2.991
+    P_acc: 4.324

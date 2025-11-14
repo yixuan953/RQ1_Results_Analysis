@@ -1,4 +1,5 @@
 # This code is used to calculate the critical <Agricultural> N, P losses through runoff 
+# The IAMGE-GNM data can be downloaded from: https://dataportaal.pbl.nl/IMAGE/GNM
 
 import xarray as xr
 
@@ -13,17 +14,17 @@ total_N_load = xr.open_dataset(total_N_load_nc)["critical_total_N_load"]
 total_P_load = xr.open_dataset(total_P_load_nc)["critical_total_P_load"]
 
 # Load total N, P losses: every five years, here we use year 2005 to calculate the proportion
-N_loss_nc = f"{IMAGE_data_dir}/Output-IMAGE_GNM-SSP1_oct2020-Nitrogen_Rivers-v2.nc"
-P_loss_nc = f"{IMAGE_data_dir}/Output-IMAGE_GNM-SSP1_oct2020-Phosphorus_Rivers-v2.nc"
+N_loss_nc = f"{IMAGE_data_dir}/Output-IMAGE_GNM-SSP5_oct2020-Nitrogen_Rivers-v2.nc"
+P_loss_nc = f"{IMAGE_data_dir}/Output-IMAGE_GNM-SSP5_oct2020-Phosphorus_Rivers-v2.nc"
 
 ds_N_loss_all = xr.open_dataset(N_loss_nc)
 ds_P_loss_all = xr.open_dataset(P_loss_nc)
 
 # Select the year used for proportion (e.g., 2005)
-ds_N_loss = ds_N_loss_all.sel(time= "2005")
-ds_P_loss = ds_P_loss_all.sel(time= "2005")
+ds_N_loss = ds_N_loss_all.sel(time= "2015")
+ds_P_loss = ds_P_loss_all.sel(time= "2015")
 
-# Calculate total and agricultural proportions (for 2005)
+# Calculate total and agricultural proportions 
 Total_N_loss = (
     ds_N_loss["Naquaculture"]
     + ds_N_loss["Nsewage"]

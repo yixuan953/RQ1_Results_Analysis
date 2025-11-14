@@ -15,7 +15,7 @@ source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
 conda activate myenv
 
 # 1 - Get the growing length, potential yield, N and P uptakes to the .nc file 
-# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S1/1_Export2nc.py
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S1/1_Export2nc.py
 
 # 2 - Plot the potential yield, growing days, N uptake, and P uptake
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/S1/2_Plot_Yp.py
