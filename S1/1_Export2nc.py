@@ -5,12 +5,12 @@ import os
 
 # study areas and crop types
 studyareas = ["Indus", "Rhine", "LaPlata", "Yangtze"]
-croptypes = ["winterwheat"] # ["mainrice", "secondrice", "maize", "soybean", "winterwheat"]
+croptypes = ["mainrice", "secondrice", "maize", "soybean", "winterwheat"]
 
 # base paths
-csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/WOFOST-withoutNPLimit/Output"
+csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline"
 range_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/WOFOST-withoutNPLimit/Output/RainfedPot_nc"
+out_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline"
 
 for studyarea in studyareas:
     # load reference grid
@@ -28,7 +28,7 @@ for studyarea in studyareas:
     lon_index = {v: j for j, v in enumerate(lon)}
 
     for croptype in croptypes:
-        csv_file = f"{csv_dir}/{studyarea}_wl_noIrri_{croptype}_Annual.csv"
+        csv_file = f"{csv_dir}/{studyarea}_{croptype}_annual.csv"
         output_file = f"{out_dir}/{studyarea}_{croptype}_annual.nc"
 
         if not os.path.exists(csv_file):
@@ -47,8 +47,11 @@ for studyarea in studyareas:
         shape = (len(years), len(lat), len(lon))
         storage_arr = np.full(shape, np.nan)
         growthday_arr = np.full(shape, np.nan)
+        harvestday_arr = np.full(shape, np.nan)
         nup_arr = np.full(shape, np.nan)
         pup_arr = np.full(shape, np.nan)
+        nloss_arr = np.full(shape, np.nan)
+        ploss_arr = np.full(shape, np.nan)
 
         # fill arrays
         for _, row in df.iterrows():
@@ -58,16 +61,22 @@ for studyarea in studyareas:
             if i is not None and j is not None and t is not None:
                 storage_arr[t, i, j] = row["Storage"]
                 growthday_arr[t, i, j] = row["GrowthDay"]
-                # nup_arr[t, i, j] = row["N_Uptake"]
-                # pup_arr[t, i, j] = row["P_Uptake"]
+                harvestday_arr[t, i, j] = row["Day"]
+                nup_arr[t, i, j] = row["N_uptake"]
+                pup_arr[t, i, j] = row["P_uptake"]
+                nloss_arr[t, i, j] = row["N_surf"] + row["N_sub"] 
+                ploss_arr[t, i, j] = row["P_surf"] + row["P_sub"] 
 
         # make Dataset
         ds = xr.Dataset(
             {
-                "Yp": (("year", "lat", "lon"), storage_arr),
+                "Yield": (("year", "lat", "lon"), storage_arr),
                 "GrowthDay": (("year", "lat", "lon"), growthday_arr),
-                # "N_Uptake": (("year", "lat", "lon"), nup_arr),
-                # "P_Uptake": (("year", "lat", "lon"), pup_arr),
+                "HarvestDay": (("year", "lat", "lon"), harvestday_arr),
+                "N_Uptake": (("year", "lat", "lon"), nup_arr),
+                "P_Uptake": (("year", "lat", "lon"), pup_arr),
+                "N_Runoff": (("year", "lat", "lon"), nloss_arr),
+                "P_Runoff": (("year", "lat", "lon"), ploss_arr),
             },
             coords={"year": years, "lat": lat, "lon": lon}
         )

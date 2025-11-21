@@ -2,8 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
-output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Output"
-plot_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/No_Fert_Test"
+output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline"
+plot_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Warm_Up_test"
 
 Basins = ["Rhine", "Indus", "Yangtze", "LaPlata"]
 Crops = ["winterwheat", "maize", "mainrice", "secondrice", "soybean"]
@@ -51,7 +51,7 @@ for basin in Basins:
         ds = pd.read_csv(file)
 
         # Filter time range
-        ds = ds[(ds["Year"] >= 1981) & (ds["Year"] <= 2000)]
+        ds = ds[(ds["Year"] >= 2005) & (ds["Year"] <= 2019)]
 
         # Find closest grid cell to checkpoint
         ds["dist"] = (ds["Lat"] - lat_chk).abs() + (ds["Lon"] - lon_chk).abs()
@@ -71,11 +71,11 @@ for basin in Basins:
         ax[0].plot(df["Date"], df["SoilMoisture"], color="blue")
         ax[0].set_ylabel("Soil Moisture")
 
-        ax[1].plot(df["Date"], df["Lpool"], color="red")
-        ax[1].set_ylabel("Labile P pool (mmol/kg)")
+        ax[1].plot(df["Date"], df["Lpool"] * 30.974, color="red")
+        ax[1].set_ylabel("Labile P pool (mg P/kg)")
 
-        ax[2].plot(df["Date"], df["Spool"], color="green")
-        ax[2].set_ylabel("Stable P pool (mmol/kg)")
+        ax[2].plot(df["Date"], df["Spool"] * 30.974, color="green")
+        ax[2].set_ylabel("Stable P pool (mg P/kg)")
         ax[2].set_xlabel("Time")
 
         fig.suptitle(f"{basin} - {crop} @ ({lat_near}, {lon_near})", fontsize=14, fontweight="bold")

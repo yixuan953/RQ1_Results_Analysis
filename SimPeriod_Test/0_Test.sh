@@ -20,5 +20,9 @@ conda activate myenv
 
 # =============== Test 2 ==============
 # Q: How many years do the model need to warm up?
-python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/SimPeriod_Test/2_Check_WarmUp.py
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/SimPeriod_Test/2_Check_WarmUp.py
+
+# =============== Test 3 ==============
+# Q: Is 5 years enough for warm up? Check yield and losses
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/SimPeriod_Test/3_Check_Yield_Losses.py
 conda deactivate

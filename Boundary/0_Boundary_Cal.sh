@@ -145,7 +145,7 @@ Cut_Range(){
 
     done   
 }
-Cut_Range
+# Cut_Range
 
 Cut_Range_Irr_Rain(){
     module load cdo

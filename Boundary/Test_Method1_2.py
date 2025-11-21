@@ -39,7 +39,6 @@ Total_P_loss = (
     + ds_P_loss["Psurface_runoff_agri"]
     + ds_P_loss["Psurface_runoff_nat"]
     + ds_P_loss["Pvegetation"]
-    + ds_P_loss["Pweathering"]
 )
 
 prop_N_agri = ds_N_loss["Nsurface_runoff_agri"] / Total_N_loss
@@ -55,9 +54,9 @@ if "time" in prop_N_agri.coords:
 if "time" in prop_P_agri.coords:
     prop_P_agri = prop_P_agri.drop_vars("time")
 
-# Apply the 2005 proportion to all years/months in total load
+# Apply the 2015 proportion to all years/months in total load
 Agri_N_loss = total_N_load * prop_N_agri
-Agri_P_loss = total_P_load * prop_P_agri
+Agri_P_loss = (total_P_load - ds_P_loss["Pweathering"]) * prop_P_agri
 
 # Rename variables correctly
 Agri_N_loss = Agri_N_loss.rename("critical_agri_N_load")
