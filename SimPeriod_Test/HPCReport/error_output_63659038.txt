@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/SimPeriod_Test/7_Total_production_annual.py", line 45, in <module>
+    yield_ds = xr.open_dataset(yield_path).sel(time=slice(start_year, end_year))
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/core/dataset.py", line 2890, in sel
+    query_results = map_index_queries(
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/core/indexing.py", line 189, in map_index_queries
+    grouped_indexers = group_indexers_by_index(obj, indexers, options)
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/core/indexing.py", line 150, in group_indexers_by_index
+    raise KeyError(
+KeyError: "'time' is not a valid dimension or coordinate for Dataset with dimensions FrozenMappingWarningOnValuesAccess({'year': 15, 'lat': 28, 'lon': 35})"

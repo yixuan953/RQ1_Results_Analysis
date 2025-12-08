@@ -1,2 +1,0 @@
-/lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/RQ1_Ideas/Test.py:108: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
-  plt.savefig(output_file, dpi=300)

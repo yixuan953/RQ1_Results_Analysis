@@ -1,0 +1,4 @@
+
+=== Processing Yangtze ===
+  > mainrice
+Saved yearly figure: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Red_org/Yangtze_mainrice_production_2010-2020.png

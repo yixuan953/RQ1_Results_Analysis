@@ -1,0 +1,29 @@
+Processing LaPlata - soybean
+
+Area-weighted averages for LaPlata - soybean:
+  Inputs:
+    N_decomp: 174.797
+    N_dep: 4.467
+    N_fert: 1.150
+  Uptake & losses:
+    N_uptake: 0.712
+    N_surf: 0.152
+    N_sub: 38.915
+    N_leach: 23.108
+    NH3: 0.284
+    N2O: 0.012
+    NOx: 0.004
+    N2: 117.226
+Processing LaPlata - soybean
+
+Area-weighted averages for LaPlata - soybean:
+  Inputs:
+    P_decomp: 19.506
+    P_dep: 0.013
+    P_fert: 0.545
+  Uptake, losses & accumulation:
+    P_uptake: 17.053
+    P_surf: 0.898
+    P_sub: 1.111
+    P_leach: 1.207
+    P_pool_acc: -0.205

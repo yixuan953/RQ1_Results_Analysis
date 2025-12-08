@@ -3,12 +3,18 @@ import pandas as pd
 import xarray as xr
 import matplotlib.pyplot as plt
 
+# Baseline scenario
 csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline"
-mask_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Warm_Up_test"
+out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Baseline"
 
-studyareas = ["LaPlata", "Yangtze", "Indus", "Rhine"]
-crops = ["winterwheat"] # ["mainrice", "secondrice", "winterwheat", "soybean", "maize"]
+# # Fertilizer reduction scenario
+# csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Sus_Irri_Red_Fert/Red_org"
+# out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Red_org"
+
+mask_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
+
+studyareas = ["Yangtze"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
+crops = ["mainrice"] # ["mainrice", "secondrice", "winterwheat", "soybean", "maize"]
 
 for basin in studyareas:
     for crop in crops:
@@ -72,19 +78,21 @@ for basin in studyareas:
         ax1.plot(ts["Year"], ts["StableP"], label="StableP", color="#1A8361", lw=2)
         ax1.set_ylabel("Soil P pools (mmol/kg)")
         ax1.set_xlabel("Year")
+        ax1.set_ylim(0, 13)
 
         # Inputs (reds)
         ax2 = ax1.twinx()
         ax2.plot(ts["Year"], ts["P_decomp"], label="P_decomp", color="#e7b41c", lw=2, ls="--")
         ax2.plot(ts["Year"], ts["P_fert"], label="P_fert", color="#f15627", lw=2, ls="--")
         ax2.set_ylabel("P inputs (kg/ha/yr)")
+        ax2.set_ylim(0, 30)
 
         # Combine legends
         lines1, labels1 = ax1.get_legend_handles_labels()
         lines2, labels2 = ax2.get_legend_handles_labels()
         ax1.legend(lines1+lines2, labels1+labels2, bbox_to_anchor=(1.05,1), loc="upper left")
 
-        plt.title(f"{basin} - {crop} Basin Average (1986–2015)", y=1.02)
+        plt.title(f"{basin} - {crop} Basin Average", y=1.02)
         plt.tight_layout()
 
         out_file = os.path.join(out_dir, f"{basin}_{crop}_Plines_pools_fert_Annual.png")

@@ -13,11 +13,18 @@ basins = ['LaPlata', 'Indus', 'Yangtze', 'Rhine']
 all_crops = ['winterwheat', 'maize', 'mainrice', 'secondrice', 'soybean']
 
 # Base paths
-model_output_base = '/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline'
 mask_base = '/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea'
 shp_base = '/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_shp_StudyArea'
-output_base = '/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Warm_Up_test'
 critical_NP_losses_base = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1"
+
+# Reduced fertilizer scenario
+model_output_base = '/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Sus_Irri_Red_Fert/Red_org'
+output_base = '/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Red_org'
+
+# Baseline scenario
+# model_output_base = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline"
+# output_base = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Baseline"
+
 
 # Create output directory
 Path(output_base).mkdir(parents=True, exist_ok=True)
@@ -47,7 +54,7 @@ def load_and_process_data(basin, crop):
     
     # Apply HA > 2500 filter
     ha_mask_filtered = np.where(ha_mask > 2500, ha_mask, np.nan)
-    ds_period = ds.sel(year=slice('2010', '2019'))  
+    ds_period = ds.sel(year=slice('2018', '2019'))  
 
     # Load critical N and P files
     n_crit_runoff_file = f"{critical_NP_losses_base}/{basin}_crit_N_runoff_kgperha.nc"
@@ -165,12 +172,26 @@ def plot_basin_crops(basin):
         
         lats = data['lats']
         lons = data['lons']
+
+        # define custom vmin/vmax for specific panels (adjust numbers to taste)
+        vmin_vmax = {
+            'Avg. Yield [kg/ha/yr]': (0, None),
+            'Crop Production [kton/yr]': (0, None),
+            'N Runoff [kg/ha/yr]': (0, 100),                  # custom scale for N runoff
+            'P Runoff [kg/ha/yr]': (0, 10),                   # custom scale for P runoff
+            'Exceedance of N Runoff [kg/ha/yr]': (0, 100),   # custom for exceedance N
+            'Exceedance of P Runoff [kg/ha/yr]': (0, 10)     # custom for exceedance P
+        }
+
         
         for j, (dataset, title) in enumerate(zip(datasets, titles)):
             ax = axes[i, j]
+
+            # determine vmin/vmax for this panel
+            vmin, vmax = vmin_vmax.get(title, (None, None))
             
             # Plot data
-            im = ax.pcolormesh(lons, lats, dataset, shading='auto', cmap='YlOrRd')
+            im = ax.pcolormesh(lons, lats, dataset, shading='auto', cmap='YlOrRd', vmin=vmin, vmax=vmax)
             
             # Add basin boundary
             basin_gdf.boundary.plot(ax=ax, color='black', linewidth=1.5)
@@ -199,7 +220,7 @@ def plot_basin_crops(basin):
     plt.tight_layout()
     
     # Save figure
-    output_file = f"{output_base}/{basin}_avg_Yield_ExcLoss.png"
+    output_file = f"{output_base}/{basin}_avg_Yield_ExcLoss_2020.png"
     plt.savefig(output_file, dpi=300, bbox_inches='tight')
     print(f"Saved: {output_file}")
     plt.close()

@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/RQ1_Ideas/Test.py", line 59, in <module>
-    mask_interp = mask.interp(lat=lats, lon=lons)
-  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/core/dataarray.py", line 2376, in interp
-    raise TypeError(
-TypeError: interp only works for a numeric type array. Given bool.

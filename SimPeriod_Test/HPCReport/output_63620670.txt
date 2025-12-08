@@ -1,0 +1,29 @@
+Processing Rhine - winterwheat
+
+Area-weighted averages for Rhine - winterwheat:
+  Inputs:
+    N_decomp: 89.751
+    N_dep: 17.309
+    N_fert: 173.986
+  Uptake & losses:
+    N_uptake: 86.718
+    N_surf: 66.421
+    N_sub: 23.947
+    N_leach: 15.870
+    NH3: 14.654
+    N2O: 2.543
+    NOx: 1.049
+    N2: 69.844
+Processing Rhine - winterwheat
+
+Area-weighted averages for Rhine - winterwheat:
+  Inputs:
+    P_decomp: 10.926
+    P_dep: 0.044
+    P_fert: 15.937
+  Uptake, losses & accumulation:
+    P_uptake: 17.599
+    P_surf: 0.157
+    P_sub: 4.031
+    P_leach: 4.360
+    P_pool_acc: 0.758

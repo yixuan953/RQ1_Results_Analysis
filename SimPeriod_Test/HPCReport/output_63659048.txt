@@ -1,0 +1,4 @@
+
+=== Processing Indus ===
+  > winterwheat
+Saved yearly figure: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Red_org/Indus_winterwheat_production_2010-2020.png

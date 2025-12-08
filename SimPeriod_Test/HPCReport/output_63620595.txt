@@ -1,0 +1,58 @@
+Processing Yangtze - mainrice
+
+Area-weighted averages for Yangtze - mainrice:
+  Inputs:
+    N_decomp: 175.838
+    N_dep: 21.019
+    N_fert: 68.048
+  Uptake & losses:
+    N_uptake: 35.231
+    N_surf: 27.102
+    N_sub: 43.663
+    N_leach: 25.626
+    NH3: 4.371
+    N2O: 0.982
+    NOx: 0.181
+    N2: 127.749
+Processing Yangtze - secondrice
+
+Area-weighted averages for Yangtze - secondrice:
+  Inputs:
+    N_decomp: 159.399
+    N_dep: 18.547
+    N_fert: 67.850
+  Uptake & losses:
+    N_uptake: 35.159
+    N_surf: 27.435
+    N_sub: 39.288
+    N_leach: 22.129
+    NH3: 4.144
+    N2O: 0.984
+    NOx: 0.162
+    N2: 116.493
+Processing Yangtze - mainrice
+
+Area-weighted averages for Yangtze - mainrice:
+  Inputs:
+    P_decomp: 19.292
+    P_dep: 0.087
+    P_fert: 2.326
+  Uptake, losses & accumulation:
+    P_uptake: 7.254
+    P_surf: 0.843
+    P_sub: 6.372
+    P_leach: 6.117
+    P_pool_acc: 1.119
+Processing Yangtze - secondrice
+
+Area-weighted averages for Yangtze - secondrice:
+  Inputs:
+    P_decomp: 18.967
+    P_dep: 0.091
+    P_fert: 2.175
+  Uptake, losses & accumulation:
+    P_uptake: 7.470
+    P_surf: 1.686
+    P_sub: 6.651
+    P_leach: 6.384
+    P_pool_acc: -0.956
