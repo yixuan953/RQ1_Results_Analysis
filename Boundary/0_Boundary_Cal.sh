@@ -121,7 +121,7 @@ Cal_Critical_Method1(){
 
     conda deactivate
 }
-Cal_Critical_Method1
+# Cal_Critical_Method1
 
 Cut_Range(){
     module load cdo
@@ -181,3 +181,82 @@ Cal_Critical_Method2(){
     conda deactivate
 }
 # Cal_Critical_Method2
+
+
+# ======== Method 3: Assuming all sectors do their job ==============
+Cal_Critical_Method3(){
+    source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
+    conda activate myenv
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_0.py
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_1.py
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_2.py
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_3_1.py
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_3_2.py
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_3_3.py
+    python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_4.py
+    conda deactivate
+}
+# Cal_Critical_Method3
+
+# After Test_Method_3_2: Sum up the nitrogen input for all crops
+# cd /lustre/nobackup/WUR/ESG/zhou111/Data/Fertilization/N_Total_Input_2015
+# cdo -O -f nc4 -z zip_4 -enssum *.nc All_crop_sum.nc
+
+
+Cut_Range(){
+    module load cdo
+    module load nco
+    StudyAreas=("Rhine" "Yangtze" "LaPlata" "Indus") #("Rhine" "Yangtze" "LaPlata" "Indus")
+    croplist=("Rice" "Maize" "Soybean" "Wheat") #("Rhine" "Yangtze" "LaPlata" "Indus")
+    data_dir="/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
+    output_dir="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/2_Critical_NP_losses/Method3"
+
+    for StudyArea in "${StudyAreas[@]}"; 
+            do 
+                data_dir="/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
+                crop_mask="${data_dir}/${StudyArea}/range.txt"
+                
+                for crop in "${croplist[@]}";      
+                    do
+                        # --- NITROGEN (N) CALCULATIONS (Original) ---
+                        
+                        # 1. N Runoff (kg/ha)
+                        N_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method3/${crop}_crit_N_runoff_kgperha.nc"
+                        cdo setgrid,/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/1_Global/grids.txt $N_runoff tmp_N_ha.nc
+                        cdo remapnn,$crop_mask tmp_N_ha.nc ${output_dir}/${crop}/${StudyArea}_crit_N_runoff_kgperha.nc
+                        rm tmp_N_ha.nc
+
+                        # 2. Total N Runoff (kg)
+                        N_total_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method3/${crop}_crit_N_runoff_kg.nc"
+                        cdo setgrid,/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/1_Global/grids.txt $N_total_runoff tmp_N_kg.nc
+                        cdo remapnn,$crop_mask tmp_N_kg.nc ${output_dir}/${crop}/${StudyArea}_crit_N_runoff_kg.nc
+                        rm tmp_N_kg.nc
+
+                        # --- PHOSPHORUS (P) CALCULATIONS (Added) ---
+
+                        # 3. P Runoff (kg/ha)
+                        P_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method3/${crop}_crit_P_runoff_kgperha.nc"
+                        cdo setgrid,/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/1_Global/grids.txt $P_runoff tmp_P_ha.nc
+                        cdo remapnn,$crop_mask tmp_P_ha.nc ${output_dir}/${crop}/${StudyArea}_crit_P_runoff_kgperha.nc
+                        rm tmp_P_ha.nc
+
+                        # 4. Total P Runoff (kg)
+                        P_total_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method3/${crop}_crit_P_runoff_kg.nc"
+                        cdo setgrid,/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/1_Global/grids.txt $P_total_runoff tmp_P_kg.nc
+                        cdo remapnn,$crop_mask tmp_P_kg.nc ${output_dir}/${crop}/${StudyArea}_crit_P_runoff_kg.nc
+                        rm tmp_P_kg.nc
+                        
+                    done  
+            done
+}
+# Cut_Range
+
+Comp_Method13(){
+    source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
+    conda activate myenv
+    python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/3_Compare_Method13.py
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/4_Agri_NP_runoff_share.py
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/5_Cal_Global_P_conc.py
+    conda deactivate
+}
+Comp_Method13

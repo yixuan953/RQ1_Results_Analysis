@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_3_2.py", line 48, in <module>
+    ds_inorg = xr.open_mfdataset(inorg_file_paths, combine='nested', concat_dim=xr.DataArray(Inorg_crop_namalist, dims=['crop']))
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/backends/api.py", line 1635, in open_mfdataset
+    datasets = [open_(p, **open_kwargs) for p in paths1d]
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/backends/api.py", line 1635, in <listcomp>
+    datasets = [open_(p, **open_kwargs) for p in paths1d]
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/backends/api.py", line 693, in open_dataset
+    ds = _dataset_from_backend_dataset(
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/backends/api.py", line 402, in _dataset_from_backend_dataset
+    ds = _chunk_ds(
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/backends/api.py", line 350, in _chunk_ds
+    chunkmanager = guess_chunkmanager(chunked_array_type)
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/namedarray/parallelcompat.py", line 116, in guess_chunkmanager
+    raise ImportError(
+ImportError: chunk manager 'dask' is not available. Please make sure 'dask' is installed and importable.

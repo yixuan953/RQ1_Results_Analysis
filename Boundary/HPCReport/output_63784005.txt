@@ -1,0 +1,33 @@
+-> Loading and preparing PN Ratio file...
+-> PN Ratio loaded and coordinates renamed successfully.
+
+==============================================
+-> Starting calculation for: Wheat
+==============================================
+  -> Inorganic P for Wheat loaded successfully.
+  -> Manure P for Wheat converted and loaded successfully.
+  ✅ Output saved to: /lustre/nobackup/WUR/ESG/zhou111/Data/Fertilization/P_Total_Input_2015_By_Crop/Wheat_total_P_input_2015.nc
+
+==============================================
+-> Starting calculation for: Rice
+==============================================
+  -> Inorganic P for Rice loaded successfully.
+  -> Manure P for Rice converted and loaded successfully.
+  ✅ Output saved to: /lustre/nobackup/WUR/ESG/zhou111/Data/Fertilization/P_Total_Input_2015_By_Crop/Rice_total_P_input_2015.nc
+
+==============================================
+-> Starting calculation for: Maize
+==============================================
+  -> Inorganic P for Maize loaded successfully.
+  -> Manure P for Maize converted and loaded successfully.
+  ✅ Output saved to: /lustre/nobackup/WUR/ESG/zhou111/Data/Fertilization/P_Total_Input_2015_By_Crop/Maize_total_P_input_2015.nc
+
+==============================================
+-> Starting calculation for: Soybean
+==============================================
+  -> Inorganic P for Soybean loaded successfully.
+  -> Manure P for Soybean converted and loaded successfully.
+  ✅ Output saved to: /lustre/nobackup/WUR/ESG/zhou111/Data/Fertilization/P_Total_Input_2015_By_Crop/Soybean_total_P_input_2015.nc
+
+
+*** All individual crop P input calculations complete. ***

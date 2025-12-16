@@ -1,0 +1,32 @@
+-> Loading and renaming coordinates in PN Ratio file...
+-> PN Ratio loaded and coordinates renamed successfully.
+-> Starting Optimized Inorganic P calculation for 2015...
+-> Finished Optimized Inorganic P calculation.
+Number of Inorganic files found: 13
+
+--- DEBUG: Inorganic P Info ---
+<xarray.DataArray 'P2O5' (lat: 360, lon: 720)> Size: 1MB
+array([[0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       ...,
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.],
+       [0., 0., 0., ..., 0., 0., 0.]], dtype=float32)
+Coordinates:
+    year     int64 8B 2015
+  * lat      (lat) float64 3kB 89.75 89.25 88.75 88.25 ... -88.75 -89.25 -89.75
+  * lon      (lon) float64 6kB -179.8 -179.3 -178.8 -178.3 ... 178.8 179.3 179.8
+-> Starting Optimized Manure P (N to P conversion) calculation for 2015...
+-> Finished Optimized Manure P calculation.
+Number of Manure files found: 21
+
+--- DEBUG: Manure P Info ---
+<xarray.DataArray (lat: 0, lon: 0)> Size: 0B
+array([], shape=(0, 0), dtype=float32)
+Coordinates:
+  * lon      (lon) float64 0B 
+  * lat      (lat) float64 0B 
+    year     int64 8B 2015
+
+✅ Successfully created and saved total P input to: /lustre/nobackup/WUR/ESG/zhou111/Data/Fertilization/P_Total_Input_2015/All_crop_sum_P_2015.nc
