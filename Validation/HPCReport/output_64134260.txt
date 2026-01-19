@@ -1,0 +1,40 @@
+Indus - maize :
+  IMAGE cropland N surplus: 2998.6749 ktons/yr
+  IMAGE agricultural N runoff: 220.2136 ktons/yr
+  WOFOST N runoff: 45.5266 ktons/yr
+  WOFOST N runoff + leaching: 67.7172 ktons/yr
+  IMAGE cropland P surplus: 547.9924 ktons/yr
+  IMAGE agricultural P runoff: 98.3731 ktons/yr
+  WOFOST P runoff: 3.3370 ktons/yr
+  WOFOST P runoff + leaching: 4.5108 ktons/yr
+ Figure saved as: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/2_Model_Adj/Indus_maize_IMAGE_WOFOST_N_P_comparison.png
+Rhine - maize :
+  IMAGE cropland N surplus: 165.5853 ktons/yr
+  IMAGE agricultural N runoff: 19.1379 ktons/yr
+  WOFOST N runoff: 28.1062 ktons/yr
+  WOFOST N runoff + leaching: 30.1108 ktons/yr
+  IMAGE cropland P surplus: -65.1953 ktons/yr
+  IMAGE agricultural P runoff: 4.2117 ktons/yr
+  WOFOST P runoff: 1.3614 ktons/yr
+  WOFOST P runoff + leaching: 2.6423 ktons/yr
+ Figure saved as: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/2_Model_Adj/Rhine_maize_IMAGE_WOFOST_N_P_comparison.png
+LaPlata - maize :
+  IMAGE cropland N surplus: 420.1847 ktons/yr
+  IMAGE agricultural N runoff: 433.9918 ktons/yr
+  WOFOST N runoff: 173.5950 ktons/yr
+  WOFOST N runoff + leaching: 241.2280 ktons/yr
+  IMAGE cropland P surplus: 290.4237 ktons/yr
+  IMAGE agricultural P runoff: 109.1658 ktons/yr
+  WOFOST P runoff: 14.4275 ktons/yr
+  WOFOST P runoff + leaching: 22.8464 ktons/yr
+ Figure saved as: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/2_Model_Adj/LaPlata_maize_IMAGE_WOFOST_N_P_comparison.png
+Yangtze - maize :
+  IMAGE cropland N surplus: 10184.9462 ktons/yr
+  IMAGE agricultural N runoff: 833.9596 ktons/yr
+  WOFOST N runoff: 541.1920 ktons/yr
+  WOFOST N runoff + leaching: 622.1612 ktons/yr
+  IMAGE cropland P surplus: 2217.2347 ktons/yr
+  IMAGE agricultural P runoff: 266.0227 ktons/yr
+  WOFOST P runoff: 13.3440 ktons/yr
+  WOFOST P runoff + leaching: 24.2185 ktons/yr
+ Figure saved as: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/2_Model_Adj/Yangtze_maize_IMAGE_WOFOST_N_P_comparison.png

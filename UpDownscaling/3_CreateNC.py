@@ -6,19 +6,19 @@ import os
 # ---------------------------- #
 # User settings
 # ---------------------------- #
-data_path = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/1_WithoutNP_Limit/Output_1981-2019"
+data_path = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline2"
 output_dir = data_path  # save in same folder
 os.makedirs(output_dir, exist_ok=True)
 
-basins = ["Yangtze"] # ["LaPlata", "Indus", "Yangtze", "Rhine"]
-crops = ["mainrice", "secondrice"] # ["winterwheat", "maize", "mainrice", "secondrice", "soybean"]
+basins = ["LaPlata", "Indus", "Yangtze", "Rhine"] # ["LaPlata", "Indus", "Yangtze", "Rhine"]
+crops = ["winterwheat", "maize", "mainrice", "secondrice", "soybean"] # ["winterwheat", "maize", "mainrice", "secondrice", "soybean"]
 
 # ---------------------------- #
 # Loop over basins and crops
 # ---------------------------- #
 for basin in basins:
     for crop in crops:
-        csv_file = f"{data_path}/{basin}_Yp_{crop}_Annual.csv"
+        csv_file = f"{data_path}/{basin}_{crop}_annual.csv"
         if not os.path.exists(csv_file):
             print(f"File not found, skipping: {csv_file}")
             continue
@@ -51,7 +51,7 @@ for basin in basins:
 
         # Create xarray Dataset
         ds = xr.Dataset(
-            {var: xr.DataArray(data_vars[var][1], coords={'Year':time,'lat':lat,'lon':lon}, dims=('time','lat','lon'))
+            {var: xr.DataArray(data_vars[var][1], coords={'Year':time,'lat':lat,'lon':lon}, dims=('Year','lat','lon'))
              for var in var_names},
             coords={'Year':time, 'lat':lat, 'lon':lon}
         )

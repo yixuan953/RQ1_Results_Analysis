@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 
 # Baseline scenario
 csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Baseline"
+# out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Baseline"
+out_dir = '/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/2_Model_Adj'
 
 # # Fertilizer reduction scenario
 # csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Sus_Irri_Red_Fert/Red_org"
@@ -37,7 +38,7 @@ for basin in studyareas:
                 df[col] = pd.to_numeric(df[col], errors="coerce")
 
         # Keep 1986–2015
-        df = df[(df["Year"] >= 2006) & (df["Year"] <= 2019)]
+        df = df[(df["Year"] >= 2005) & (df["Year"] <= 2019)]
 
         # Load mask
         mask = xr.open_dataset(mask_file)

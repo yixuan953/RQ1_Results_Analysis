@@ -1,0 +1,29 @@
+Processing Indus - winterwheat
+
+Area-weighted averages for Indus - winterwheat:
+  Inputs:
+    N_decomp: 12.088
+    N_dep: 10.813
+    N_fert: 130.482
+  Uptake & losses:
+    N_uptake: 79.692
+    N_surf: 7.486
+    N_sub: 7.783
+    N_leach: 4.517
+    NH3: 17.622
+    N2O: 1.536
+    NOx: 0.657
+    N2: 34.090
+Processing Yangtze - mainrice
+
+Area-weighted averages for Yangtze - mainrice:
+  Inputs:
+    P_decomp: 1.903
+    P_dep: 0.087
+    P_fert: 24.045
+  Uptake, losses & accumulation:
+    P_uptake: 11.573
+    P_surf: 0.674
+    P_sub: 5.414
+    P_leach: 5.216
+    P_pool_acc: 3.157

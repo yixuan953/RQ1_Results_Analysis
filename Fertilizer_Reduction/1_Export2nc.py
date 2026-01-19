@@ -4,13 +4,19 @@ import numpy as np
 import os
 
 # study areas and crop types
-studyareas = ["Indus", "Rhine", "LaPlata", "Yangtze"]
-croptypes = ["mainrice", "secondrice", "maize", "soybean", "winterwheat"]
+studyareas = ["Indus"] # ["Indus", "Rhine", "LaPlata", "Yangtze"]
+croptypes = ["winterwheat"] # ["mainrice", "secondrice", "maize", "soybean", "winterwheat"]
+
+# Baseline:
+csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline"
+range_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
+out_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline"
+
 
 # base paths: Rainfed
-csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Rainfed/Red_org"
-range_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Rainfed/Red_org"
+# csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Rainfed/Red_org"
+# range_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
+# out_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Rainfed/Red_org"
 
 # base pahts: Irrigated
 # csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Sus_Irri_Red_Fert/Red_12"

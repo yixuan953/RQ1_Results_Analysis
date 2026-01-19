@@ -128,24 +128,48 @@ Cut_Range(){
     module load nco
     StudyAreas=("Rhine" "Yangtze" "LaPlata" "Indus") #("Rhine" "Yangtze" "LaPlata" "Indus")
     data_dir="/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-    output_dir="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1"
-    N_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1/Global_cropland_critical_N_runoff.nc"
-    P_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1/Global_cropland_critical_P_runoff.nc"
-    N_total_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1/Global_maincrop_critical_total_N_runoff.nc"
-    P_total_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1/Global_maincrop_critical_total_P_runoff.nc"
+    # output_dir="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1"
+    # N_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1/Global_cropland_critical_N_runoff.nc"
+    # P_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1/Global_cropland_critical_P_runoff.nc"
+    # N_total_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1/Global_maincrop_critical_total_N_runoff.nc"
+    # P_total_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method1/Global_maincrop_critical_total_P_runoff.nc"
+    output_dir="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method3"
+    N_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method3/Global_cropland_critical_N_runoff_kgPerha.nc"
+    P_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method3/Global_cropland_critical_P_runoff_kgPerha.nc"
+    N_total_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method3/Global_maincrop_critical_total_N_runoff.nc"
+    P_total_runoff="/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method3/Global_maincrop_critical_total_P_runoff.nc"
 
     for StudyArea in "${StudyAreas[@]}"; 
     do
         crop_mask="${data_dir}/${StudyArea}/range.txt"
 
-        cdo remapnn,$crop_mask $N_runoff ${output_dir}/${StudyArea}_crit_N_runoff_kgperha.nc
-        cdo remapnn,$crop_mask $P_runoff ${output_dir}/${StudyArea}_crit_P_runoff_kgperha.nc
-        cdo remapnn,$crop_mask $N_total_runoff ${output_dir}/${StudyArea}_crit_N_runoff_kg.nc
-        cdo remapnn,$crop_mask $P_total_runoff ${output_dir}/${StudyArea}_crit_P_runoff_kg.nc
+            GRID_DEF="/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/1_Global/grids.txt"
+            # 1. Critical N Runoff (kg/ha)
+            echo "Processing Critical N Runoff (kg/ha)..."
+            cdo setgrid,$GRID_DEF $N_runoff tmp_N_ha.nc
+            cdo remapnn,$crop_mask tmp_N_ha.nc ${output_dir}/${StudyArea}_crit_N_runoff_kgperha.nc
+            rm tmp_N_ha.nc
+            # 2. Critical P Runoff (kg/ha)
+            echo "Processing Critical P Runoff (kg/ha)..."
+            cdo setgrid,$GRID_DEF $P_runoff tmp_P_ha.nc
+            cdo remapnn,$crop_mask tmp_P_ha.nc ${output_dir}/${StudyArea}_crit_P_runoff_kgperha.nc
+            rm tmp_P_ha.nc
+            # 3. Critical N Total Runoff (kg)
+            echo "Processing Critical N Total Runoff (kg)..."
+            cdo setgrid,$GRID_DEF $N_total_runoff tmp_N_kg.nc
+            cdo remapnn,$crop_mask tmp_N_kg.nc ${output_dir}/${StudyArea}_crit_N_runoff_kg.nc
+            rm tmp_N_kg.nc
+            # 4. Critical P Total Runoff (kg)
+            echo "Processing Critical P Total Runoff (kg)..."
+            cdo setgrid,$GRID_DEF $P_total_runoff tmp_P_kg.nc
+            cdo remapnn,$crop_mask tmp_P_kg.nc ${output_dir}/${StudyArea}_crit_P_runoff_kg.nc
+            rm tmp_P_kg.nc
+
+            echo "All four files have been processed and regridded successfully."
 
     done   
 }
-# Cut_Range
+Cut_Range
 
 Cut_Range_Irr_Rain(){
     module load cdo
@@ -193,7 +217,10 @@ Cal_Critical_Method3(){
     # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_3_1.py
     # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_3_2.py
     # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_3_3.py
-    python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_4.py
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_4.py # Redistribute to each crop by fertilizer use
+    # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_5.py
+
+    
     conda deactivate
 }
 # Cal_Critical_Method3
@@ -259,4 +286,4 @@ Comp_Method13(){
     # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/5_Cal_Global_P_conc.py
     conda deactivate
 }
-Comp_Method13
+# Comp_Method13

@@ -1,0 +1,30 @@
+Indus - mainrice :
+  IMAGE cropland N surplus: 3008.9154 ktons/yr
+  IMAGE agricultural N runoff: 132.6662 ktons/yr
+  WOFOST N runoff: 157.7415 ktons/yr
+  WOFOST N runoff + leaching: 220.9954 ktons/yr
+  IMAGE cropland P surplus: 549.1972 ktons/yr
+  IMAGE agricultural P runoff: 63.1065 ktons/yr
+  WOFOST P runoff: 6.7220 ktons/yr
+  WOFOST P runoff + leaching: 9.7662 ktons/yr
+ Figure saved as: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/2_Model_Adj/Indus_mainrice_IMAGE_WOFOST_N_P_comparison.png
+LaPlata - mainrice :
+  IMAGE cropland N surplus: 420.2516 ktons/yr
+  IMAGE agricultural N runoff: 15.6921 ktons/yr
+  WOFOST N runoff: 5.2814 ktons/yr
+  WOFOST N runoff + leaching: 7.1638 ktons/yr
+  IMAGE cropland P surplus: 290.4374 ktons/yr
+  IMAGE agricultural P runoff: 4.4812 ktons/yr
+  WOFOST P runoff: 0.3980 ktons/yr
+  WOFOST P runoff + leaching: 0.6894 ktons/yr
+ Figure saved as: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/2_Model_Adj/LaPlata_mainrice_IMAGE_WOFOST_N_P_comparison.png
+Yangtze - mainrice :
+  IMAGE cropland N surplus: 10282.9441 ktons/yr
+  IMAGE agricultural N runoff: 891.3654 ktons/yr
+  WOFOST N runoff: 1385.8914 ktons/yr
+  WOFOST N runoff + leaching: 1558.7638 ktons/yr
+  IMAGE cropland P surplus: 2241.1309 ktons/yr
+  IMAGE agricultural P runoff: 266.0445 ktons/yr
+  WOFOST P runoff: 51.4583 ktons/yr
+  WOFOST P runoff + leaching: 95.2595 ktons/yr
+ Figure saved as: /lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/2_Model_Adj/Yangtze_mainrice_IMAGE_WOFOST_N_P_comparison.png

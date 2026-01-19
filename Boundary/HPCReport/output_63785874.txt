@@ -1,5 +1,0 @@
-Successfully calculated and saved critical N and P runoff for Wheat
-Successfully calculated and saved critical N and P runoff for Rice
-Successfully calculated and saved critical N and P runoff for Maize
-Successfully calculated and saved critical N and P runoff for Soybean
-Good luck for the next step!

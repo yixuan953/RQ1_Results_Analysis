@@ -38,7 +38,7 @@ conda activate myenv
 
 # =============== Test 6 ======================
 # Q: How did the crop production and P pool change in the fertilization reduction process?
-# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/SimPeriod_Test/6_Plines_pool_fert.py
-python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/SimPeriod_Test/7_Total_production_annual.py
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/SimPeriod_Test/6_Plines_pool_fert.py
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/SimPeriod_Test/7_Total_production_annual.py
 
 conda deactivate

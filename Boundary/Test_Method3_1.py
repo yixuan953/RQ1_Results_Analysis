@@ -1,8 +1,10 @@
 # This code is used to calculate the critical N, P concentration [mg/L] & critical N, P load [kg] for agricultural runoff
 
-import os
 import xarray as xr
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
 import numpy as np
+import os
 
 IMAGE_land_use_file = "/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/IMAGE/Output-IMAGE_GNM-SSP5_oct2020-LandCover-v2.nc"
 Global_crit_NP_conc_runoff_file = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method3/Global_crit_NP_conc_runoff.nc"
@@ -38,15 +40,14 @@ P_nat = 0.003 # mg/l
 frac_dissolved_P = 0.25 
 
 raw_N_conc = (Crit_N_conc_runoff - N_nat * (1 - frac_agri)) / frac_agri
-crit_N_conc_agri = xr.where(frac_agri > 0, np.maximum(raw_N_conc, N_nat), N_nat) 
+crit_N_conc_agri = xr.where(frac_agri > 0, np.maximum(raw_N_conc, N_nat), Crit_N_conc_runoff) 
 crit_N_load_agri = crit_N_conc_agri * runoff * agri_area * 10000 # kg
 
 raw_P_conc = (Crit_P_conc_runoff - P_nat * (1 - frac_agri)) / frac_agri
-crit_P_conc_agri = xr.where(frac_agri > 0, np.maximum(raw_P_conc, P_nat), P_nat)  # mg/l
+crit_P_conc_agri = xr.where(frac_agri > 0, np.maximum(raw_P_conc, P_nat), Crit_P_conc_runoff)  # mg/l
 crit_P_load_agri = frac_dissolved_P * crit_P_conc_agri * runoff * agri_area * 10000 # kg
 
 # Save the outputs
-
 ds_crit_N_conc = xr.Dataset(
     {
        "Crit_N_conc_agri": (("lat", "lon"), crit_N_conc_agri.values),  
@@ -76,3 +77,58 @@ ds_crit_P_conc.to_netcdf(output_file2)
 
 print(f"Computed and saved {output_file1} & {output_file2}")
 print(f"Good luck for the next step!")
+
+
+# =============== Plotting part (optional) ==============
+fig = plt.figure(figsize=(18, 14))
+projection = ccrs.PlateCarree()
+
+plot_data = [
+    (ds_crit_N_conc["Crit_N_conc_agri"], "Critical N Concentration (Agriculture)", ds_crit_N_conc["Crit_N_conc_agri"].attrs.get("units", "mg/L"), 221, 0, 5), # Position 2x2, subplot 1
+    (ds_crit_N_conc["Crit_N_load_agri"], "Critical N Load (Agriculture)", ds_crit_N_conc["Crit_N_load_agri"].attrs.get("units", "kg N"), 222, 0, 5000000),       # Position 2x2, subplot 2
+    (ds_crit_P_conc["Crit_P_conc_agri"], "Critical P Concentration (Agriculture)", ds_crit_P_conc["Crit_P_conc_agri"].attrs.get("units", "mg/L"), 223, 0, 0.4), # Position 2x2, subplot 3
+    (ds_crit_P_conc["Crit_P_load_agri"], "Critical P Load (Agriculture)", ds_crit_P_conc["Crit_P_load_agri"].attrs.get("units", "kg P"), 224, 0, 200000)        # Position 2x2, subplot 4
+]
+
+for data_array, title, cbar_label, pos, vmin_val, vmax_val in plot_data:
+    # Add a subplot with the defined projection
+    ax = fig.add_subplot(pos, projection=projection)
+    
+    # Optional: Set extent to global view, slightly expanded
+    ax.set_global() 
+    
+    p = data_array.plot.pcolormesh(
+        ax=ax, 
+        transform=projection,
+        # *** FIX HERE: Pass vmin and vmax directly to pcolormesh ***
+        vmin=vmin_val,         # Use the custom minimum value
+        vmax=vmax_val,         # Use the custom maximum value
+        # **********************************************************
+        cbar_kwargs={
+            'label': cbar_label,
+            'orientation': 'vertical',
+            'shrink': 0.7 
+        },
+        cmap='Spectral_r', 
+        extend='both' # This ensures colors extend beyond vmin/vmax range
+    )
+    
+    # Add map features for context
+    ax.coastlines(resolution='50m', color='black', linewidth=0.8)
+    
+    # Add gridlines (optional, but good for lat/lon context)
+    gl = ax.gridlines(crs=projection, draw_labels=True, linewidth=1, 
+                      color='gray', alpha=0.5, linestyle='--')
+    gl.top_labels = False # Turn off labels on the top edge
+    gl.right_labels = False # Turn off labels on the right edge
+
+    # Set the title
+    ax.set_title(title, fontsize=14)
+
+fig.suptitle("Global Critical N and P Concentration/Load for Agriculture", fontsize=18, y=0.95)
+plt.tight_layout(rect=[0, 0.03, 1, 0.9]) # Adjust layout to make space for suptitle
+
+# --- 5. Save and Show the Figure ---
+output_plot_file = os.path.join(output_dir, "Global_Agri_Critical_NP_Maps.png")
+plt.savefig(output_plot_file, dpi=300, bbox_inches='tight')
+print(f"\nSuccessfully generated and saved map to: {output_plot_file}")

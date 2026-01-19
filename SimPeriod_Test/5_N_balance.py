@@ -3,17 +3,20 @@ import pandas as pd
 import xarray as xr
 import matplotlib.pyplot as plt
 
-# Baseline scenario
-csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Baseline"
+# # Baseline scenario
+# csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline"
+# out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Baseline"
 
-# Sustainable irrigation scenario
-csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_2_Sus_Irrigation"
-out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Sus_Irri"
+# # Sustainable irrigation scenario
+# csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_2_Sus_Irrigation"
+# out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Sus_Irri"
 
-# Reduced fertilizer scenario
-csv_dir = '/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Sus_Irri_Red_Fert/Red_org'
-out_dir = '/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Red_org'
+# # Reduced fertilizer scenario
+# csv_dir = '/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Sus_Irri_Red_Fert/Red_org'
+# out_dir = '/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Red_org'
+
+csv_dir = '/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate01'
+out_dir = '/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/2_Model_Adj'
 
 mask_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
 # Groups
@@ -22,7 +25,7 @@ gaseous = ["NH3", "N2O", "NOx", "N2"]
 water = ["N_surf", "N_sub", "N_leach"]
 uptake = ["N_uptake"]
 
-studyareas = ["Rhine"]# ["LaPlata", "Yangtze", "Indus", "Rhine"]
+studyareas = ["Indus"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
 crops = ["winterwheat"] # ["mainrice", "secondrice", "winterwheat", "soybean", "maize"]
 
 for basin in studyareas:

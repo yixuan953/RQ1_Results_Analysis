@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 # csv_dir = '/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Sus_Irri_Red_Fert/Red_org'
 # out_dir = '/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Red_org'
 
-csv_dir = '/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate01'
+csv_dir = '/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline'
 out_dir = '/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/2_Model_Adj'
 
 mask_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
@@ -26,8 +26,8 @@ p_inputs = ["P_decomp", "P_dep", "P_fert"]
 p_outputs = ["P_uptake", "P_surf", "P_sub", "P_leach", "P_pool_acc"]
 p_vars = p_inputs + p_outputs 
 
-studyareas = ["Indus"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
-crops = ["winterwheat"] # ["mainrice", "secondrice", "winterwheat", "soybean", "maize"]
+studyareas = ["LaPlata"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
+crops = ["maize"] # ["mainrice", "secondrice", "winterwheat", "soybean", "maize"]
 
 
 for basin in studyareas:
@@ -78,7 +78,8 @@ for basin in studyareas:
         for group, cols in [("Inputs", p_inputs), ("Uptake, losses & accumulation", p_outputs)]:
             weighted[group] = {}
             for col in cols:
-                weighted[group][col] = (merged[col] * merged["HA"]).sum() / total_ha
+                # weighted[group][col] = (merged[col] * merged["HA"]).sum() / total_ha
+                weighted[group][col] = (merged[col] * merged["HA"] * 0.000001).sum() # Transform to ktons
 
         #  Print values
         print(f"\nArea-weighted averages for {basin} - {crop}:")
@@ -128,10 +129,11 @@ for basin in studyareas:
                 if val >= 0:
                     bottom[i] += val
 
-        ax.set_ylabel("kg P ha⁻¹ yr⁻¹ (basin average)")
+        ax.set_ylabel("ktons P yr⁻¹")
+
         ax.set_title(f"{basin} - {crop} (2010 - 2019 average)")
         ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
-        ax.set_ylim(-5, 30)
+        # ax.set_ylim(-5, 30)
 
         plt.tight_layout()
 

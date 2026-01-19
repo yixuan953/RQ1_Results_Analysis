@@ -1,0 +1,29 @@
+Processing LaPlata - maize
+
+Area-weighted averages for LaPlata - maize:
+  Inputs:
+    N_decomp: 76.630
+    N_dep: 6.838
+    N_fert: 53.592
+  Uptake & losses:
+    N_uptake: 32.391
+    N_surf: 5.770
+    N_sub: 19.310
+    N_leach: 11.478
+    NH3: 7.889
+    N2O: 0.761
+    NOx: 0.153
+    N2: 59.307
+Processing LaPlata - maize
+
+Area-weighted averages for LaPlata - maize:
+  Inputs:
+    P_decomp: 8.696
+    P_dep: 0.026
+    P_fert: 17.696
+  Uptake, losses & accumulation:
+    P_uptake: 7.390
+    P_surf: 0.716
+    P_sub: 1.240
+    P_leach: 1.091
+    P_pool_acc: 15.980

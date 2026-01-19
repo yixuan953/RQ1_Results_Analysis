@@ -6,8 +6,8 @@
 #SBATCH --error=HPCReport/error_output_%j.txt
 
 #-----------------------------Required resources-----------------------
-#SBATCH --time=600
-#SBATCH --mem=250000
+#SBATCH --time=60
+#SBATCH --mem=25000
 
 #--------------------Environment, Operations and Job steps-------------
 source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
@@ -30,6 +30,14 @@ conda activate myenv
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/5_Compare_NP_loss.py
 
 # 6. Check the irrigation
-python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/6_Irrigation_Check.py
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/6_Irrigation_Check.py
+
+# 7. Check the total N, P runoff, and N, P balance in ktons
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_IMAGE_WOFOST.py
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_N_balance_ktons.py
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_P_balnce_ktons.py
+
+# 7. Compare GLOBIOM and WOFOST runoff
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_1_GLOBIOM_WOFOST.py
 
 conda deactivate

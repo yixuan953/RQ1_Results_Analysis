@@ -1,0 +1,16 @@
+Processing Indus - winterwheat
+
+Area-weighted averages for Indus - winterwheat:
+  Inputs:
+    P_decomp: 1.282
+    P_dep: 0.073
+    P_fert: 21.142
+  Uptake, losses & accumulation:
+    P_uptake: 13.405
+    P_surf: 0.817
+    P_sub: 0.362
+    P_leach: 0.601
+    P_pool_acc: 7.311
+
+=== Processing Yangtze ===
+⚠️ Missing exceed file for Yangtze, skipping.

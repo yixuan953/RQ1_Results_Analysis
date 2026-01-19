@@ -1,9 +1,8 @@
-import os 
+import os
 import pandas as pd
 import xarray as xr
 import matplotlib.pyplot as plt
 
-# Input/output directories
 # # Baseline scenario
 # csv_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline"
 # out_dir = "/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Baseline"
@@ -16,19 +15,18 @@ import matplotlib.pyplot as plt
 # csv_dir = '/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Sus_Irri_Red_Fert/Red_org'
 # out_dir = '/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/Red_Fert_Test/Red_org'
 
-csv_dir = '/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate01'
+csv_dir = '/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline'
 out_dir = '/lustre/nobackup/WUR/ESG/zhou111/4_RQ1_Analysis_Results/2_Model_Adj'
 
 mask_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
+# Groups
+inputs = ["N_decomp", "N_dep", "N_fert"]
+gaseous = ["NH3", "N2O", "NOx", "N2"]
+water = ["N_surf", "N_sub", "N_leach"]
+uptake = ["N_uptake"]
 
-# P flux variables
-p_inputs = ["P_decomp", "P_dep", "P_fert"]
-p_outputs = ["P_uptake", "P_surf", "P_sub", "P_leach", "P_pool_acc"]
-p_vars = p_inputs + p_outputs 
-
-studyareas = ["Indus"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
-crops = ["winterwheat"] # ["mainrice", "secondrice", "winterwheat", "soybean", "maize"]
-
+studyareas = ["LaPlata"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
+crops = ["maize"] # ["mainrice", "secondrice", "winterwheat", "soybean", "maize"]
 
 for basin in studyareas:
     for crop in crops:
@@ -40,47 +38,60 @@ for basin in studyareas:
             continue
 
         print(f"Processing {basin} - {crop}")
- 
+
         # Read CSV
         df = pd.read_csv(csv_file, delimiter=",", skipinitialspace=True)
-        df["P_pool_acc"] = df.get("P_fert") + df.get("P_decomp") + df.get("P_dep") - df.get("P_uptake") - df.get("P_surf") - df.get("P_sub") - df.get("P_leach")
-        
-        # Convert P variables to numeric
-        for col in p_vars:
+
+        # Ensure numeric
+        for col in inputs + gaseous + water + uptake:
             if col in df.columns:
                 df[col] = pd.to_numeric(df[col], errors="coerce")
 
+        # >>> Recalculate N_fert here <<<
+        df["N_fert"] = (
+            df.get("N_fert", 0)
+            + df.get("N_surf", 0)
+            + df.get("NH3", 0)
+            + df.get("N2O", 0)
+            + df.get("NOx", 0)
+        )
+
         # Filter years
         df = df[(df["Year"] >= 2010) & (df["Year"] <= 2019)]
-        df = df.dropna(subset=p_vars)
+        df = df.dropna(subset=inputs + gaseous + water + uptake)
         if df.empty:
             continue
 
         # Average across years per pixel
-        avg_df = df.groupby(["Lat", "Lon"])[p_vars].mean().reset_index()
+        avg_df = df.groupby(["Lat", "Lon"])[inputs + gaseous + water + uptake].mean().reset_index()
 
         # Load mask
         mask = xr.open_dataset(mask_file)
         ha = mask["HA"].load()
+
         ha_df = ha.to_dataframe().reset_index()
         ha_valid = ha_df[~ha_df["HA"].isna()][["lat", "lon", "HA"]]
 
-        # Merge with avg_df
+        # Merge HA with avg_df
         merged = avg_df.merge(
-            ha_valid, left_on=["Lat", "Lon"], right_on=["lat", "lon"], how="inner"
-        )
+            ha_valid, left_on=["Lat", "Lon"], right_on=["lat", "lon"], how="inner")
+            
         if merged.empty:
             continue
 
-        # Compute area-weighted averages
-        total_ha = merged["HA"].sum()
+        # Compute weighted averages
+        # total_ha = merged["HA"].sum()
         weighted = {}
-        for group, cols in [("Inputs", p_inputs), ("Uptake, losses & accumulation", p_outputs)]:
+        for group, cols in [
+            ("Inputs", inputs),
+            ("Uptake & losses", uptake + water + gaseous )
+        ]:
             weighted[group] = {}
             for col in cols:
-                weighted[group][col] = (merged[col] * merged["HA"]).sum() / total_ha
-
-        #  Print values
+                # weighted[group][col] = (merged[col] * merged["HA"]).sum() / total_ha
+                weighted[group][col] = (merged[col] * merged["HA"] * 0.000001).sum() # Transform to ktons
+        
+        # Print values
         print(f"\nArea-weighted averages for {basin} - {crop}:")
         for group, vals in weighted.items():
             print(f"  {group}:")
@@ -89,52 +100,46 @@ for basin in studyareas:
 
         # Colors
         colors = {
-            # Inputs (reddish)
-            "P_decomp": "#ffcc66",  # light orange
-            "P_dep": "#744714",     # medium orange
-            "P_fert": "#f86b3c",    # dark red-orange
+            # Inputs
+            "N_decomp": "#ffcc66",  # light orange
+            "N_dep": "#744714",     # medium orange
+            "N_fert": "#f86b3c",    # dark red-orange
+
+            # Gaseous (pink/purple)
+            "NH3": "#5d3951",
+            "N2O": "#cc66cc",
+            "NOx": "#F9CEF9",
+            "N2": "#BD84BD",
 
             # Water (blueish)
-            "P_surf": "#a9d2fa",
-            "P_sub": "#3399ff",
-            "P_leach": "#003366",
+            "N_surf": "#a9d2fa",
+            "N_sub": "#3399ff",
+            "N_leach": "#003366",
 
             # Uptake (green)
-            "P_uptake": "#377d37",
-
-            # Accumulation (purple)
-            "P_pool_acc": "#F0A6EBD5"
+            "N_uptake": "#377d37"
         }
 
         # Plot stacked bar chart
         fig, ax = plt.subplots(figsize=(7, 6))
 
-        categories = ["Inputs", "Uptake, losses & accumulation"]
+        categories = ["Inputs", "Uptake & losses"]
         bottom = [0, 0]
 
         for i, cat in enumerate(categories):
             for comp, val in weighted[cat].items():
-                # Adjust legend for P_acc
-                label = comp
-                if comp == "P_acc":
-                    label = "P_acc (±)"
-                # Handle negative bars properly
-                ax.bar(
-                    cat, val,
-                    bottom=bottom[i] if val >= 0 else 0,
-                    label=label if label not in ax.get_legend_handles_labels()[1] else "",
-                    color=colors.get(comp, None)
-                )
-                if val >= 0:
-                    bottom[i] += val
+                ax.bar(cat, val, bottom=bottom[i],
+                       label=comp if comp not in ax.get_legend_handles_labels()[1] else "",
+                       color=colors.get(comp, None))
+                bottom[i] += val
 
-        ax.set_ylabel("kg P ha⁻¹ yr⁻¹ (basin average)")
+        ax.set_ylabel("ktons N yr⁻¹")
         ax.set_title(f"{basin} - {crop} (2010 - 2019 average)")
         ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left")
-        ax.set_ylim(-5, 30)
+        # ax.set_ylim(0, 300)
 
         plt.tight_layout()
 
-        out_file = os.path.join(out_dir, f"{basin}_{crop}_PbarCharts_Avg.png")
+        out_file = os.path.join(out_dir, f"{basin}_{crop}_NbarCharts_Avg.png")
         plt.savefig(out_file, dpi=300, bbox_inches="tight")
         plt.close()

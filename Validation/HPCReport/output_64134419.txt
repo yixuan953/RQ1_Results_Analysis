@@ -1,0 +1,29 @@
+Processing Indus - winterwheat
+
+Area-weighted averages for Indus - winterwheat:
+  Inputs:
+    N_decomp: 674.101
+    N_dep: 173.853
+    N_fert: 2097.614
+  Uptake & losses:
+    N_uptake: 1238.731
+    N_surf: 120.293
+    N_sub: 216.671
+    N_leach: 127.791
+    NH3: 283.312
+    N2O: 24.668
+    NOx: 10.570
+    N2: 923.522
+Processing Indus - winterwheat
+
+Area-weighted averages for Indus - winterwheat:
+  Inputs:
+    P_decomp: 71.529
+    P_dep: 1.168
+    P_fert: 339.906
+  Uptake, losses & accumulation:
+    P_uptake: 192.160
+    P_surf: 5.256
+    P_sub: 2.877
+    P_leach: 4.179
+    P_pool_acc: 208.132

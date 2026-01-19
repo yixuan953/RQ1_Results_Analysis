@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/UpDownscaling/3_CreateNC.py", line 54, in <module>
+    {var: xr.DataArray(data_vars[var][1], coords={'Year':time,'lat':lat,'lon':lon}, dims=('time','lat','lon'))
+  File "/lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/UpDownscaling/3_CreateNC.py", line 54, in <dictcomp>
+    {var: xr.DataArray(data_vars[var][1], coords={'Year':time,'lat':lat,'lon':lon}, dims=('time','lat','lon'))
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/core/dataarray.py", line 479, in __init__
+    coords, dims = _infer_coords_and_dims(data.shape, coords, dims)
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/core/dataarray.py", line 209, in _infer_coords_and_dims
+    _check_coords_dims(shape, new_coords, dims_tuple)
+  File "/home/WUR/zhou111/miniconda3/envs/myenv/lib/python3.10/site-packages/xarray/core/dataarray.py", line 131, in _check_coords_dims
+    raise ValueError(
+ValueError: coordinate Year has dimensions ('Year',), but these are not a subset of the DataArray dimensions ('time', 'lat', 'lon')

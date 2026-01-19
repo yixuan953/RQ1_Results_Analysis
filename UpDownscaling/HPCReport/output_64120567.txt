@@ -1,0 +1,34 @@
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/LaPlata_winterwheat_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/LaPlata_winterwheat_annual.nc
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/LaPlata_maize_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/LaPlata_maize_annual.nc
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/LaPlata_mainrice_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/LaPlata_mainrice_annual.nc
+File not found, skipping: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/LaPlata_secondrice_annual.csv
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/LaPlata_soybean_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/LaPlata_soybean_annual.nc
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Indus_winterwheat_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Indus_winterwheat_annual.nc
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Indus_maize_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Indus_maize_annual.nc
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Indus_mainrice_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Indus_mainrice_annual.nc
+File not found, skipping: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Indus_secondrice_annual.csv
+File not found, skipping: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Indus_soybean_annual.csv
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Yangtze_winterwheat_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Yangtze_winterwheat_annual.nc
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Yangtze_maize_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Yangtze_maize_annual.nc
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Yangtze_mainrice_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Yangtze_mainrice_annual.nc
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Yangtze_secondrice_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Yangtze_secondrice_annual.nc
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Yangtze_soybean_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Yangtze_soybean_annual.nc
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Rhine_winterwheat_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Rhine_winterwheat_annual.nc
+Processing: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Rhine_maize_annual.csv
+Saved: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Rhine_maize_annual.nc
+File not found, skipping: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Rhine_mainrice_annual.csv
+File not found, skipping: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Rhine_secondrice_annual.csv
+File not found, skipping: /lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_Krate002/Rhine_soybean_annual.csv
