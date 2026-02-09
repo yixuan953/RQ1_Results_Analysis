@@ -1,0 +1,1 @@
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Rainfed/Red_15/Yangtze_Secondrice_Fert_2005-2020_FixRate.nc was calculated and saved

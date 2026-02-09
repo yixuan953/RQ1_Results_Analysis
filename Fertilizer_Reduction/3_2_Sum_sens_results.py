@@ -1,7 +1,5 @@
-# This code is used to get how much fertilizer can (should) be reduced to meet the regional N boundary:
-# Here we go through each fertilizer reductin scenario, the loop stops when:
-# 1) N_exceedance <=0 or
-# 2) Yield <= 50% of baseline yield --> The crop growth is largely compromised, making harvest not feasible
+# This code is used to get how much fertilizer can (should) be increased to increase the crop yield:
+# Here we go through each fertilizer incuctin scenario, the loop stops when: N_exceedance >= 0
 
 
 import pandas as pd
@@ -10,18 +8,18 @@ import xarray as xr
 import os
 
 Basins = ["Indus", "Rhine", "LaPlata", "Yangtze"]
-CropTypes = ["mainrice", "soybean", "winterwheat"] # ["mainrice", "secondrice", "maize", "winterwheat", "soybean"]
-red_scenarios = ["Red_01", "Red_02", "Red_03", "Red_04", "Red_05", "Red_06", "Red_07", "Red_08", "Red_09", "Red_10", "Red_11", "Red_12", "Red_13", "Red_14", "Red_15"]
+CropTypes = ["mainrice", "secondrice", "maize", "winterwheat", "soybean"]
+inc_scenarios = ["Inc_01", "Inc_02", "Inc_03", "Inc_04", "inc_05", "inc_06", "inc_07", "inc_08", "inc_09", "inc_10", "inc_11", "inc_12", "inc_13", "inc_14", "inc_15"]
 
 baseline_sce_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/4_Analysis4Plotting/0_Summary/1_Baseline"
 
 # Irrigated field
-red_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Irrigated" 
-yield_var = "Avg_Yield_Irrigated"
+# inc_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_inc/4_2_Increased_Fert/Irrigated" 
+# yield_var = "Avg_Yield_Irrigated"
 
-# # Rainfed field
-# red_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Rainfed" 
-# yield_var = "Avg_Yield_Rainfed"
+# Rainfed field
+inc_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_inc/4_2_Increased_Fert/Rainfed" 
+yield_var = "Avg_Yield_Rainfed"
 
 for basin in Basins:
     for crop in CropTypes:
@@ -37,11 +35,10 @@ for basin in Basins:
         HA = ds_baseline["Total_HA"] # ha
         mask = basin_mask.where(HA > 2500, np.nan) # only consider grid cells with more than 2500 ha harvested area
 
-        baseline_yield = ds_baseline[yield_var].where(mask.notnull()) # kg/ha 
 
-        # ========= Loop through each fertilizer reduction scenario ===
-        sens_Yield_nc = os.path.join(red_dir, f"Sens_Analysis/{basin}_{crop}_Yields.nc")
-        sens_N_exceedance_nc = os.path.join(red_dir, f"Sens_Analysis/{basin}_{crop}_N_Exceedance.nc")
+        # ========= Loop through each fertilizer scenario ===
+        sens_Yield_nc = os.path.join(inc_dir, f"Sens_Analysis/{basin}_{crop}_Yields.nc")
+        sens_N_exceedance_nc = os.path.join(inc_dir, f"Sens_Analysis/{basin}_{crop}_N_Exceedance.nc")
         if not os.path.exists(sens_Yield_nc) or not os.path.exists(sens_N_exceedance_nc):
             print(f"Sensitivity analysis files do not exist for {basin} - {crop}")
             continue    
@@ -51,17 +48,17 @@ for basin in Basins:
 
         # Initialize result grids with NaN or a flag value
         final_yield = baseline_yield.copy() 
-        final_red_prop = xr.full_like(baseline_yield, 0.0)
+        final_inc_prop = xr.full_like(baseline_yield, 0.0)
         stopped_mask = xr.zeros_like(baseline_yield, dtype=bool)
         
         print(f"Processing {basin} - {crop}...")
 
-        for red_sce in red_scenarios:
-            sens_yield = ds_sens_yield["Yield"].sel(scenario=red_sce).where(mask.notnull())
-            sens_N_exceedance = ds_sens_N_exceedance["N_exceedance"].sel(scenario=red_sce).where(mask.notnull())
+        for inc_sce in inc_scenarios:
+            sens_yield = ds_sens_yield["Yield"].sel(scenario=inc_sce).where(mask.notnull())
+            sens_N_exceedance = ds_sens_N_exceedance["N_exceedance"].sel(scenario=inc_sce).where(mask.notnull())
 
-            # Map the scenario string to the numeric value: e.g. Red_05 --> 0.5
-            red_prop = float(red_sce.split('_')[1]) / 10.0  
+            # Map the scenario string to the numeric value: e.g. inc_05 --> 0.5
+            inc_prop = float(inc_sce.split('_')[1]) / 10.0  
 
             # Define the stopping conditions (Vectorized)
             # Condition 1: N_exceedance <= 0
@@ -74,7 +71,7 @@ for basin in Basins:
 
             # Save results for pixels meeting the criteria for the FIRST time
             final_yield = xr.where(stop_now, sens_yield, final_yield)
-            final_red_prop = xr.where(stop_now, red_prop, final_red_prop)
+            final_inc_prop = xr.where(stop_now, inc_prop, final_inc_prop)
 
             # Update the tracker so we don't overwrite these pixels in the next scenario
             stopped_mask = stopped_mask | stop_now
@@ -84,14 +81,14 @@ for basin in Basins:
                 break
 
         # ================ Save the Results ==================
-        output_dir_fert = os.path.join(red_dir, f"Red_prop/{basin}_{crop}_Fert_red_prop.nc")
-        output_yield = os.path.join(red_dir, f"Red_prop/{basin}_{crop}_Yield_after_red.nc")
+        output_dir_fert = os.path.join(inc_dir, f"inc_prop/{basin}_{crop}_Fert_inc_prop.nc")
+        output_yield = os.path.join(inc_dir, f"inc_prop/{basin}_{crop}_Yield_after_inc.nc")
         os.makedirs(os.path.dirname(output_dir_fert), exist_ok=True)
         os.makedirs(os.path.dirname(output_yield), exist_ok=True)
 
         # Convert to datasets for saving
-        ds_out_fert = final_red_prop.to_dataset(name="Fert_red_prop")
-        ds_out_yield = final_yield.to_dataset(name="Yield_after_red")
+        ds_out_fert = final_inc_prop.to_dataset(name="Fert_inc_prop")
+        ds_out_yield = final_yield.to_dataset(name="Yield_after_inc")
 
         ds_out_fert.to_netcdf(output_dir_fert)
         ds_out_yield.to_netcdf(output_yield)

@@ -1,0 +1,20 @@
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/Indus_Rice_Fert_2005-2020_FixRate.nc was calculated and saved
+Missing output file: Indus - secondrice
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/Indus_Maize_Fert_2005-2020_FixRate.nc was calculated and saved
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/Indus_Wheat_Fert_2005-2020_FixRate.nc was calculated and saved
+Missing output file: Indus - soybean
+Missing output file: Rhine - mainrice
+Missing output file: Rhine - secondrice
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/Rhine_Maize_Fert_2005-2020_FixRate.nc was calculated and saved
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/Rhine_Wheat_Fert_2005-2020_FixRate.nc was calculated and saved
+Missing output file: Rhine - soybean
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/LaPlata_Rice_Fert_2005-2020_FixRate.nc was calculated and saved
+Missing output file: LaPlata - secondrice
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/LaPlata_Maize_Fert_2005-2020_FixRate.nc was calculated and saved
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/LaPlata_Wheat_Fert_2005-2020_FixRate.nc was calculated and saved
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/LaPlata_Soybean_Fert_2005-2020_FixRate.nc was calculated and saved
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/Yangtze_Rice_Fert_2005-2020_FixRate.nc was calculated and saved
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/Yangtze_Rice_Fert_2005-2020_FixRate.nc was calculated and saved
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/Yangtze_Maize_Fert_2005-2020_FixRate.nc was calculated and saved
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/Yangtze_Wheat_Fert_2005-2020_FixRate.nc was calculated and saved
+/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated/Inc_10/Yangtze_Soybean_Fert_2005-2020_FixRate.nc was calculated and saved
