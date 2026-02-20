@@ -5,7 +5,7 @@ import numpy as np
 import os
 
 Basins = ["Indus", "Rhine", "LaPlata", "Yangtze"]
-CropTypes = ["winterwheat", "soybean", "mainrice"] # ["mainrice", "secondrice", "maize", "winterwheat", "soybean"]
+CropTypes = ["mainrice", "secondrice", "maize", "winterwheat", "soybean"]
 start_year = 2010
 end_year = 2019
 
@@ -13,14 +13,14 @@ end_year = 2019
 Data_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
 
 # # Rainfed 
-# model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_rainfed"
-# excessive_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_1_Excessive_NP_rainfed"
-# Output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Rainfed"
+model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_rainfed"
+excessive_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_1_Excessive_NP_rainfed"
+Output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Rainfed"
 
 # Sustainable Irrigated
-model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_2_Sus_Irrigation"
-excessive_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_2_Excessive_NP_irrigated"
-Output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Irrigated"
+# model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_2_Sus_Irrigation"
+# excessive_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_2_Excessive_NP_irrigated"
+# Output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Irrigated"
 
 os.makedirs(f"{Output_dir}/Red_prop", exist_ok=True)
 
@@ -67,7 +67,7 @@ for basin in Basins:
             cropname = "Wheat"
             cropname2 = cropname
 
-        fert_path = os.path.join(Data_dir,basin,"Fertilization",f"{basin}_{cropname2}_Fert_2005-2020_FixRate.nc")
+        fert_path = os.path.join(Data_dir,basin,"Fertilization",f"{basin}_{cropname}_Fert_2005-2020_FixRate.nc")
         fert_ds = xr.open_dataset(fert_path)
         var_Urea_N = fert_ds[f"{cropname}_Urea_N_application_rate"]
         var_Inorg_N = fert_ds[f"{cropname}_Inorg_N_application_rate"]

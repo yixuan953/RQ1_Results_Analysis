@@ -26,8 +26,8 @@ p_inputs = ["P_decomp", "P_dep", "P_fert"]
 p_outputs = ["P_uptake", "P_surf", "P_sub", "P_leach", "P_pool_acc"]
 p_vars = p_inputs + p_outputs 
 
-studyareas = ["LaPlata"] # ["LaPlata", "Yangtze", "Indus", "Rhine"]
-crops = ["maize"] # ["mainrice", "secondrice", "winterwheat", "soybean", "maize"]
+studyareas = ["Yangtze"]# ["LaPlata", "Yangtze", "Indus", "Rhine"]
+crops = ["mainrice"] # ["mainrice", "secondrice", "winterwheat", "soybean", "maize"]
 
 
 for basin in studyareas:
@@ -35,7 +35,7 @@ for basin in studyareas:
         mask_crop = "winterwheat" if crop == "wheat" else crop
 
         csv_file = os.path.join(csv_dir, f"{basin}_{crop}_annual.csv")
-        mask_file = os.path.join(mask_dir, basin, "Mask", f"{basin}_{mask_crop}_mask.nc")
+        mask_file = os.path.join(mask_dir, basin, "Mask_Old", f"{basin}_{mask_crop}_mask.nc")
         if not os.path.exists(csv_file) or not os.path.exists(mask_file):
             continue
 

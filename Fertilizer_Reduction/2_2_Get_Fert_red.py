@@ -10,8 +10,8 @@ import xarray as xr
 import os
 
 Basins = ["Indus", "Rhine", "LaPlata", "Yangtze"]
-CropTypes = ["mainrice", "soybean", "winterwheat"] # ["mainrice", "secondrice", "maize", "winterwheat", "soybean"]
-red_scenarios = ["Red_01", "Red_02", "Red_03", "Red_04", "Red_05", "Red_06", "Red_07", "Red_08", "Red_09", "Red_10", "Red_11", "Red_12", "Red_13", "Red_14", "Red_15"]
+CropTypes = ["mainrice", "secondrice", "maize", "winterwheat", "soybean"]
+red_scenarios = ["Red_02", "Red_04", "Red_06", "Red_08", "Red_10", "Red_12", "Red_14"]
 
 baseline_sce_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/4_Analysis4Plotting/0_Summary/1_Baseline"
 
@@ -27,7 +27,7 @@ for basin in Basins:
     for crop in CropTypes:
 
         # ================ Read the baseline yield ==================
-        baseline_nc = os.path.join(baseline_sce_dir, f"{basin}_{crop}_summary_baseline.nc")
+        baseline_nc = os.path.join(baseline_sce_dir, f"{basin}_{crop}_summary.nc")
         if not os.path.exists(baseline_nc):
             print(f"Baseline file does not exist: {baseline_nc}")
             continue
@@ -60,14 +60,14 @@ for basin in Basins:
             sens_yield = ds_sens_yield["Yield"].sel(scenario=red_sce).where(mask.notnull())
             sens_N_exceedance = ds_sens_N_exceedance["N_exceedance"].sel(scenario=red_sce).where(mask.notnull())
 
-            # Map the scenario string to the numeric value: e.g. Red_05 --> 0.5
+            # Map the scenario string to the numeric value: e.g. Red_08 --> 0.8
             red_prop = float(red_sce.split('_')[1]) / 10.0  
 
             # Define the stopping conditions (Vectorized)
             # Condition 1: N_exceedance <= 0
-            # Condition 2: Yield <= 50% of baseline (0.5 * baseline_yield)
+            # Condition 2: Yield <= 60% of baseline (0.6 * baseline_yield)
             cond_n = sens_N_exceedance <= 0
-            cond_yield = sens_yield <= (0.5 * baseline_yield)
+            cond_yield = sens_yield <= (0.6 * baseline_yield)
 
             # Combine conditions and ensure we only consider pixels that haven't stopped yet
             stop_now = (cond_n | cond_yield) & (~stopped_mask) & mask.notnull()

@@ -22,7 +22,7 @@ for basin in studyareas:
         mask_crop = "winterwheat" if crop == "wheat" else crop
 
         csv_file = os.path.join(csv_dir, f"{basin}_{crop}_annual.csv")
-        mask_file = os.path.join(mask_dir, basin, "Mask", f"{basin}_{mask_crop}_mask.nc")
+        mask_file = os.path.join(mask_dir, basin, "Mask_Old", f"{basin}_{mask_crop}_mask.nc")
         if not os.path.exists(csv_file) or not os.path.exists(mask_file):
             continue
 

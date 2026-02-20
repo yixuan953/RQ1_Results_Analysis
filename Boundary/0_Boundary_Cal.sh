@@ -169,7 +169,7 @@ Cut_Range(){
 
     done   
 }
-Cut_Range
+# Cut_Range
 
 Cut_Range_Irr_Rain(){
     module load cdo
@@ -287,3 +287,12 @@ Comp_Method13(){
     conda deactivate
 }
 # Comp_Method13
+
+
+Cut_low_runoff_mask(){
+    source /home/WUR/zhou111/miniconda3/etc/profile.d/conda.sh
+    conda activate myenv
+    python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Boundary/Test_Method3_1_add.py
+    conda deactivate
+}
+Cut_low_runoff_mask

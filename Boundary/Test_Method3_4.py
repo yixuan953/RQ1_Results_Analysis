@@ -5,7 +5,6 @@ import xarray as xr
 import numpy as np
 
 # --- FILE PATHS ---
-output_dir = "/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/Globiom"
 
 # N-Files
 cropland_N_file = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/Test_CriticalNP/Method3/Global_crit_N_runoff_cropland.nc"

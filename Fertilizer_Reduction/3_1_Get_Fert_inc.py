@@ -6,8 +6,8 @@ import xarray as xr
 import numpy as np
 import os
 
-Basins = ["Yangtze"] # ["Indus", "Rhine", "LaPlata", "Yangtze"]
-CropTypes = ["mainrice", "secondrice"] # ["mainrice", "secondrice", "maize", "winterwheat", "soybean"]
+Basins = ["Indus", "Rhine", "LaPlata", "Yangtze"]
+CropTypes = ["mainrice", "secondrice", "maize", "winterwheat", "soybean"]
 start_year = 2010
 end_year = 2019
 
@@ -21,16 +21,16 @@ Data_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
 # Reduced fertilizer data directory
 
 # Rainfed 
-# model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_rainfed"
-# excessive_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_1_Excessive_NP_rainfed"
-# Output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Rainfed"
-# Fert_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Rainfed/Red_prop"
+model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_rainfed"
+excessive_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_1_Excessive_NP_rainfed"
+Output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Rainfed"
+Fert_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Rainfed/Red_prop"
 
 # # Sustainable Irrigation
-model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_2_Sus_Irrigation"
-excessive_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_2_Excessive_NP_irrigated"
-Output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated"
-Fert_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Irrigated/Red_prop"
+# model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_2_Sus_Irrigation"
+# excessive_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_2_Excessive_NP_irrigated"
+# Output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_2_Increased_Fert/Irrigated"
+# Fert_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Irrigated/Red_prop"
 
 os.makedirs(f"{Output_dir}/{output_inc_para}", exist_ok=True)
 

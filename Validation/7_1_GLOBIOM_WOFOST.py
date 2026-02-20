@@ -13,13 +13,17 @@ import numpy as np
 GLOBIOM_N_runoff_dir = "/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/Globiom/Output-SSP2_NPK_NF31-Nitrogen_Budget-MANAGEMENTGLOBIOM-Nutrient-Nitrogen.nc"
 GLOBIOM_P_runoff_dir = "/lustre/nobackup/WUR/ESG/zhou111/Data/Raw/Globiom/Output-SSP2_NPK_NF31-Phosphorus_Budget-MANAGEMENTGLOBIOM-Nutrient-Phosphorus.nc"
 
-ds_GLOBIOM_N = xr.open_dataset(GLOBIOM_N_runoff_dir)
+ds_GLOBIOM_N = xr.open_dataset(GLOBIOM_N_runoff_dir, decode_times=False)
 lat = ds_GLOBIOM_N["lat"].values
 lon = ds_GLOBIOM_N["lon"].values
-CropSurfaceRunoff_N = ds_GLOBIOM_N["CropSurfaceRunoff_N"].sel(time_counter=2) # Year 2020
+CropSurfaceRunoff_N = ds_GLOBIOM_N["CropSurfaceRunoff"].isel(time_counter=2) # Year 2020
+CropLeaching_N = ds_GLOBIOM_N["CropLeaching"].isel(time_counter=2) # Year 2020
+CropNH3NOxVolatilization_N = ds_GLOBIOM_N["CropNH3NOxVolatilization"].isel(time_counter=2) # Year 2020
+CropN2_N = ds_GLOBIOM_N["CropN2"].isel(time_counter=2) # Year 2020
 
-ds_GLOBIOM_P = xr.open_dataset(GLOBIOM_P_runoff_dir)
-CropSurfaceRunoff_P = ds_GLOBIOM_P["CropSurfaceRunoff_P"].sel(time_counter=2) # Year 2020
+ds_GLOBIOM_P = xr.open_dataset(GLOBIOM_P_runoff_dir, decode_times=False)
+CropSurfaceRunoff_P = ds_GLOBIOM_P["CropSurfaceRunoff"].isel(time_counter=2) # Year 2020
+# P does not have leaching in GLOBIOM
 
 # FERTILIZER INPUT FILE PATHS
 fertilizer_input_N_dir = "/lustre/nobackup/WUR/ESG/zhou111/Data/Fertilization/N_Total_Input_2015"
@@ -59,7 +63,7 @@ for crop in crop_namelist:
     crop_P_input_file = os.path.join(fertilizer_input_P_dir, f"{crop}_total_P_input_2015.nc")
     ds_crop_input = xr.open_dataset(crop_P_input_file)
     crop_P_input = xr.DataArray(
-        ds_crop_input["Total_P_input"].values,
+        ds_crop_input[f"{crop}_P_Total_Input"].values,
         coords={"lat": lat, "lon": lon},
         dims=("lat", "lon")
     )   
@@ -67,14 +71,21 @@ for crop in crop_namelist:
     # -------------------------------------------------------------------
 
     # Calculate and save the N, P runoff for each crop [ktons] 
-    crop_crit_N_loss = 1000 * CropSurfaceRunoff_N * crop_frac_N
-    crop_crit_P_loss = 1000 * CropSurfaceRunoff_P * crop_frac_P
+    crop_N_runoff = 1000 * CropSurfaceRunoff_N * crop_frac_N
+    crop_P_runoff = 1000 * CropSurfaceRunoff_P * crop_frac_P
+
+    crop_N_leaching = 1000 * CropLeaching_N * crop_frac_N
+    crop_NH3NOx = 1000 * CropNH3NOxVolatilization_N * crop_frac_N
+    crop_N2 = 1000 * CropN2_N * crop_frac_N
 
     # Save the results 
     ds_crop_surface_runoff_loss = xr.Dataset(
         {
-            "GLOBIOM_cropland_N_runoff_2020": crop_crit_N_loss,
-            "GLOBIOM_cropland_P_runoff_2020": crop_crit_P_loss
+            "GLOBIOM_cropland_N_runoff_2020": crop_N_runoff,
+            "GLOBIOM_cropland_N_leaching_2020": crop_N_leaching,
+            "GLOBIOM_cropland_NH3NOx_2020": crop_NH3NOx,
+            "GLOBIOM_cropland_N2_2020": crop_N2,
+            "GLOBIOM_cropland_P_runoff_2020": crop_P_runoff
         },
         coords={
             "lat": lat,

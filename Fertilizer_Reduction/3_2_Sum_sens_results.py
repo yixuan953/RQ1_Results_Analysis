@@ -1,96 +1,122 @@
-# This code is used to get how much fertilizer can (should) be increased to increase the crop yield:
-# Here we go through each fertilizer incuctin scenario, the loop stops when: N_exceedance >= 0
+# This code is used to find out how much fertilzer should be Incuced
 
-
-import pandas as pd
 import numpy as np
-import xarray as xr
 import os
+import xarray as xr
 
 Basins = ["Indus", "Rhine", "LaPlata", "Yangtze"]
 CropTypes = ["mainrice", "secondrice", "maize", "winterwheat", "soybean"]
-inc_scenarios = ["Inc_01", "Inc_02", "Inc_03", "Inc_04", "inc_05", "inc_06", "inc_07", "inc_08", "inc_09", "inc_10", "inc_11", "inc_12", "inc_13", "inc_14", "inc_15"]
+Inc_scenarios = ["Inc_02", "Inc_04",  "Inc_06",  "Inc_08",  "Inc_10", "Inc_12",  "Inc_14"]
+start_year = 2010
+end_year = 2019
 
-baseline_sce_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/4_Analysis4Plotting/0_Summary/1_Baseline"
+Data_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
+crit_loss_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/2_Critical_NP_losses/Method3"
 
-# Irrigated field
-# inc_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_inc/4_2_Increased_Fert/Irrigated" 
-# yield_var = "Avg_Yield_Irrigated"
+# model output directory for rainfed field 
+model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Rainfed"
+output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Rainfed/Sens_Analysis_inc"
 
-# Rainfed field
-inc_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_inc/4_2_Increased_Fert/Rainfed" 
-yield_var = "Avg_Yield_Rainfed"
+# model output directory for irrigated field
+# model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Sus_Irri_Red_Fert"
+# output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Irrigated/Sens_Analysis_inc"
 
 for basin in Basins:
+
+    # Load basin range
+    basin_mask_file = os.path.join(Data_dir, basin, f"range.nc")
+    ds_basin_mask = xr.open_dataset(basin_mask_file)
+    mask = ds_basin_mask["mask"]
+    mask = mask.where(mask == 1.0, np.nan)
+
     for crop in CropTypes:
 
-        # ================ Read the baseline yield ==================
-        baseline_nc = os.path.join(baseline_sce_dir, f"{basin}_{crop}_summary_baseline.nc")
-        if not os.path.exists(baseline_nc):
-            print(f"Baseline file does not exist: {baseline_nc}")
+        # ===================== Load harvested area ======================
+        if crop == "winterwheat":
+            cropname = "WHEA"
+        elif crop == "maize":
+            cropname = "MAIZ"
+        elif crop == "soybean":
+            cropname = "SOYB"
+        elif crop == "mainrice" and basin != "Yangtze":
+            cropname = "RICE"
+        elif crop == "mainrice" and basin == "Yangtze":
+            cropname = "MAINRICE"
+        elif crop == "secondrice":
+            cropname = "SECONDRICE" 
+
+        Total_HA_file = os.path.join(Data_dir, basin, f"Harvest_Area/{cropname}_Harvest_Area_05d_{basin}.nc")
+        if not os.path.exists (Total_HA_file):
+            print (f"Missing harvested area file for {crop} in basin {basin}")
             continue
 
-        ds_baseline = xr.open_dataset(baseline_nc)
-        basin_mask = ds_baseline["Basin_mask"]
-        HA = ds_baseline["Total_HA"] # ha
-        mask = basin_mask.where(HA > 2500, np.nan) # only consider grid cells with more than 2500 ha harvested area
+        ds_total_HA = xr.open_dataset(Total_HA_file)
+        Total_HA = ds_total_HA["Harvest_Area"]  # in ha
+        Basin_mask = mask * Total_HA.where(Total_HA > 2500, np.nan) # only consider grid cells with more than 2500 ha harvested area
+
+        #  ===================== Load critical N, P losses =====================
+        if crop == "winterwheat":
+            crop_crit_name = "Wheat"
+        elif crop == "maize":
+            crop_crit_name = "Maize"
+        elif crop == "soybean":
+            crop_crit_name = "Soybean"
+        elif crop == "mainrice":
+            crop_crit_name = "Rice"
+        elif crop == "secondrice":
+            crop_crit_name = "Rice" 
+            
+        crit_N_loss_file = os.path.join(crit_loss_dir, f"{crop_crit_name}/{basin}_crit_N_runoff_kgperha.nc")
+        ds_crit_N_loss = xr.open_dataset(crit_N_loss_file)
+        Crit_N_Runoff = ds_crit_N_loss["Critical_N_runoff"].where(Basin_mask>2500)
+
+        crit_P_loss_file = os.path.join(crit_loss_dir, f"{crop_crit_name}/{basin}_crit_P_runoff_kgperha.nc")
+        ds_crit_P_loss = xr.open_dataset(crit_P_loss_file)
+        Crit_P_Runoff = ds_crit_P_loss["Critical_P_runoff"].where(Basin_mask>2500)
 
 
-        # ========= Loop through each fertilizer scenario ===
-        sens_Yield_nc = os.path.join(inc_dir, f"Sens_Analysis/{basin}_{crop}_Yields.nc")
-        sens_N_exceedance_nc = os.path.join(inc_dir, f"Sens_Analysis/{basin}_{crop}_N_Exceedance.nc")
-        if not os.path.exists(sens_Yield_nc) or not os.path.exists(sens_N_exceedance_nc):
-            print(f"Sensitivity analysis files do not exist for {basin} - {crop}")
-            continue    
+        # ================ Find the suitable fertilizer Induction scenario =================
+        Yield_list = []
+        N_exc_list = []
+        P_exc_list = []
 
-        ds_sens_yield = xr.open_dataset(sens_Yield_nc)
-        ds_sens_N_exceedance = xr.open_dataset(sens_N_exceedance_nc)
+        for scenario in Inc_scenarios:
+            results_dir = os.path.join(model_output_dir, scenario)
+            result_file = os.path.join(results_dir, f"{basin}_{crop}_annual.nc")
 
-        # Initialize result grids with NaN or a flag value
-        final_yield = baseline_yield.copy() 
-        final_inc_prop = xr.full_like(baseline_yield, 0.0)
-        stopped_mask = xr.zeros_like(baseline_yield, dtype=bool)
-        
-        print(f"Processing {basin} - {crop}...")
+            if not os.path.exists(result_file):
+                print(f"Missing {crop} for basin {basin} in scenario {scenario}")
+                continue
 
-        for inc_sce in inc_scenarios:
-            sens_yield = ds_sens_yield["Yield"].sel(scenario=inc_sce).where(mask.notnull())
-            sens_N_exceedance = ds_sens_N_exceedance["N_exceedance"].sel(scenario=inc_sce).where(mask.notnull())
+            # Using 'with' ensures the file is closed after reading
+            with xr.open_dataset(result_file) as ds_fert:
+                Yield = ds_fert["Yield"].sel(year=slice(start_year, end_year))
+                Avg_Yield = Yield.mean(dim="year", skipna=True).where(Basin_mask > 2500)
 
-            # Map the scenario string to the numeric value: e.g. inc_05 --> 0.5
-            inc_prop = float(inc_sce.split('_')[1]) / 10.0  
+                N_Runoff = (ds_fert["N_Runoff"].sel(year=slice(start_year, end_year))
+                            .mean(dim="year", skipna=True).where(Basin_mask > 2500))
+                P_Runoff = (ds_fert["P_Runoff"].sel(year=slice(start_year, end_year))
+                            .mean(dim="year", skipna=True).where(Basin_mask > 2500))
 
-            # Define the stopping conditions (Vectorized)
-            # Condition 1: N_exceedance <= 0
-            # Condition 2: Yield <= 50% of baseline (0.5 * baseline_yield)
-            cond_n = sens_N_exceedance <= 0
-            cond_yield = sens_yield <= (0.5 * baseline_yield)
+            N_Exceedance = (N_Runoff - Crit_N_Runoff).rename("N_exceedance")
+            P_Exceedance = (P_Runoff - Crit_P_Runoff).rename("P_exceedance")
 
-            # Combine conditions and ensure we only consider pixels that haven't stopped yet
-            stop_now = (cond_n | cond_yield) & (~stopped_mask) & mask.notnull()
+            # THE FIX: Append the data to the lists
+            Yield_list.append(Avg_Yield.expand_dims(scenario=[scenario]))
+            N_exc_list.append(N_Exceedance.expand_dims(scenario=[scenario]))
+            P_exc_list.append(P_Exceedance.expand_dims(scenario=[scenario]))
 
-            # Save results for pixels meeting the criteria for the FIRST time
-            final_yield = xr.where(stop_now, sens_yield, final_yield)
-            final_inc_prop = xr.where(stop_now, inc_prop, final_inc_prop)
+        # Ensure we actually have data before trying to concatenate
+        if Yield_list:
+            Yield_all = xr.concat(Yield_list, dim="scenario")
+            N_Exceedance_all = xr.concat(N_exc_list, dim="scenario")
+            P_Exceedance_all = xr.concat(P_exc_list, dim="scenario")
 
-            # Update the tracker so we don't overwrite these pixels in the next scenario
-            stopped_mask = stopped_mask | stop_now
+            # Ensure output directory exists
+            os.makedirs(output_dir, exist_ok=True)
 
-            # Optional: If all pixels in the mask have stopped, we can break the scenario loop
-            if stopped_mask.where(mask.notnull(), True).all():
-                break
-
-        # ================ Save the Results ==================
-        output_dir_fert = os.path.join(inc_dir, f"inc_prop/{basin}_{crop}_Fert_inc_prop.nc")
-        output_yield = os.path.join(inc_dir, f"inc_prop/{basin}_{crop}_Yield_after_inc.nc")
-        os.makedirs(os.path.dirname(output_dir_fert), exist_ok=True)
-        os.makedirs(os.path.dirname(output_yield), exist_ok=True)
-
-        # Convert to datasets for saving
-        ds_out_fert = final_inc_prop.to_dataset(name="Fert_inc_prop")
-        ds_out_yield = final_yield.to_dataset(name="Yield_after_inc")
-
-        ds_out_fert.to_netcdf(output_dir_fert)
-        ds_out_yield.to_netcdf(output_yield)
-        
-        print(f"Finished processing {basin} - {crop}")
+            Yield_all.to_netcdf(os.path.join(output_dir, f"{basin}_{crop}_Yields.nc"))
+            N_Exceedance_all.to_netcdf(os.path.join(output_dir, f"{basin}_{crop}_N_Exceedance.nc"))
+            P_Exceedance_all.to_netcdf(os.path.join(output_dir, f"{basin}_{crop}_P_Exceedance.nc"))
+            
+        print(f"Processed {crop} in basin {basin}")

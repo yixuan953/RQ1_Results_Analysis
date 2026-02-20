@@ -5,8 +5,8 @@ import os
 import xarray as xr
 
 Basins = ["Indus", "Rhine", "LaPlata", "Yangtze"]
-CropTypes = ["mainrice", "soybean", "winterwheat"] # ["mainrice", "secondrice", "maize", "winterwheat", "soybean"]
-red_scenarios = ["Red_01", "Red_02", "Red_03", "Red_04", "Red_05", "Red_06", "Red_07", "Red_08", "Red_09", "Red_10", "Red_11", "Red_12", "Red_13", "Red_14", "Red_15"]
+CropTypes = ["mainrice", "secondrice", "maize", "winterwheat", "soybean"]
+red_scenarios = ["Red_02", "Red_04", "Red_06", "Red_08", "Red_10", "Red_12", "Red_14"]
 start_year = 2010
 end_year = 2019
 
@@ -14,12 +14,12 @@ Data_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
 crit_loss_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/2_Critical_NP_losses/Method3"
 
 # model output directory for rainfed field 
-# model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Rainfed"
-# output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Rainfed/Sens_Analysis"
+model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Rainfed"
+output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Rainfed/Sens_Analysis"
 
 # model output directory for irrigated field
-model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Sus_Irri_Red_Fert"
-output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Irrigated/Sens_Analysis"
+# model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_3_Sus_Irri_Red_Fert"
+# output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/4_Fertilization_Red/4_1_Reduced_Fert/Irrigated/Sens_Analysis"
 
 for basin in Basins:
 

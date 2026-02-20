@@ -34,10 +34,10 @@ conda activate myenv
 
 # 7. Check the total N, P runoff, and N, P balance in ktons
 # python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_IMAGE_WOFOST.py
-# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_N_balance_ktons.py
-# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_P_balnce_ktons.py
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_N_balance_ktons.py
+python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_P_balnce_ktons.py
 
 # 7. Compare GLOBIOM and WOFOST runoff
-python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_1_GLOBIOM_WOFOST.py
-
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_1_GLOBIOM_WOFOST.py
+# python /lustre/nobackup/WUR/ESG/zhou111/1_RQ1_Code/3_Results_Analysis/Validation/7_2_GLOBIOM_WOFOST.py
 conda deactivate

@@ -1,0 +1,29 @@
+Processing Indus - mainrice
+
+Area-weighted averages for Indus - mainrice:
+  Inputs:
+    N_decomp: 116.250
+    N_dep: 95.382
+    N_fert: 973.673
+  Uptake & losses:
+    N_uptake: 334.134
+    N_surf: 62.952
+    N_sub: 17.617
+    N_leach: 183.157
+    NH3: 128.718
+    N2O: 13.455
+    NOx: 5.247
+    N2: 440.017
+Processing Yangtze - mainrice
+
+Area-weighted averages for Yangtze - mainrice:
+  Inputs:
+    P_decomp: 56.541
+    P_dep: 2.308
+    P_fert: 639.142
+  Uptake, losses & accumulation:
+    P_uptake: 289.455
+    P_surf: 6.963
+    P_sub: 12.205
+    P_leach: 63.195
+    P_pool_acc: 326.173

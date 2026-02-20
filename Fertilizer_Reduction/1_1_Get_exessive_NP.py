@@ -5,17 +5,17 @@ import os
 
 boundary_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/2_Critical_NP_losses/Method3"
 data_dir = "/lustre/nobackup/WUR/ESG/zhou111/2_RQ1_Data/2_StudyArea"
-input_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/4_Analysis4Plotting/0_Summary"
+input_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/4_Analysis4Plotting/0_Summary/1_Baseline" # To read the harvested area from this code
 
 # Rainfed scenario
-model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_rainfed"
-output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_1_Excessive_NP_rainfed"
+# model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_1_Baseline_rainfed"
+# output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_1_Excessive_NP_rainfed"
 
 # Sustainable irrigated scenario
-# model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_2_Sus_Irrigation"
-# output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_2_Excessive_NP_irrigated"
+model_output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/2_2_Sus_Irrigation"
+output_dir = "/lustre/nobackup/WUR/ESG/zhou111/3_RQ1_Model_Outputs/3_Scenarios/3_2_Excessive_NP_irrigated"
 
-basins = [ "Indus", "LaPlata", "Yangtze", "Rhine"]
+basins = ["Indus", "LaPlata", "Yangtze", "Rhine"]
 croptypes = ["mainrice", "secondrice", "maize", "soybean", "winterwheat"]
 
 for basin in basins:
@@ -30,7 +30,7 @@ for basin in basins:
         elif crop == "winterwheat":
             crop_name = "Wheat"
 
-        input_file = os.path.join(input_dir, f"{basin}_{crop}_summary_baseline.nc") # Baseline scenario
+        input_file = os.path.join(input_dir, f"{basin}_{crop}_summary.nc") # Baseline scenario
         if not os.path.exists(input_file):
             print(f"{basin} basin does not have {crop}")
             continue
